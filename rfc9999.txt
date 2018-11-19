@@ -1,0 +1,13 @@
+Epitech Paris                                                 M. Drapier
+Request for Comments: 9999                                    E. Filliat
+Category: Standard Track                                        M. Soler
+                                                                  T. Pen
+                                                                 Epitech
+                                                           November 2018
+                            R-Type Protocol
+
+Status of this Memo
+
+   This memo is the official specification of the R-Type Protocol. The
+   R-Type is a third year project from EPITECH. Distribution of this
+   memo is unlimited.
