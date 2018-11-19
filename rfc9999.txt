@@ -1,13 +1,88 @@
+
+
+
+
+
+
+
+
+
+
+
+
 Epitech Paris                                                 M. Drapier
 Request for Comments: 9999                                    E. Filliat
-Category: Standard Track                                        M. Soler
+Category: Standards Track                                       M. Soler
                                                                   T. Pen
                                                                  Epitech
                                                            November 2018
-                            R-Type Protocol
+
+                            R-Type Protocols
 
 Status of this Memo
 
-   This memo is the official specification of the R-Type Protocol. The
-   R-Type is a third year project from EPITECH. Distribution of this
-   memo is unlimited.
+   This memo is the official specification of the 2 R-Type Protocols
+   (the R-Type TCP Protocol and the R-Type UDP Protocol). The R-Type is
+   a third year project from EPITECH. Distribution of this memo is
+   unlimited.
+
+Table of Contents
+
+   1.   Introduction . . . . . . . . . . . . . . . . . . . . . . . . . 1
+   2.   R-Type architecture  . . . . . . . . . . . . . . . . . . . . . 2
+   3.   R-Type TCP Protocol  . . . . . . . . . . . . . . . . . . . . . 2
+   3a.   Data structure  . . . . . . . . . . . . . . . . . . . . . . . 2
+   3b.   Server connection . . . . . . . . . . . . . . . . . . . . . . 2
+   3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 2
+   3d.   Sprites transmission  . . . . . . . . . . . . . . . . . . . . 2
+   4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 3
+
+
+1.  Introduction
+
+   The goal of the R-Type project is to create an online multiplayer
+   copy of the classic R-Type game (1987).
+
+
+
+
+
+
+
+
+
+
+
+
+
+Drapier                     Standards Track                     [Page 1]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+2.  R-Type architecture
+
+   The R-Type architecture is a classic client-server game architecture.
+   All the game engine is in the server. A client connects to the server
+   by using the R-Type TCP protocol. When connected, the client has the
+   choice between creating a lobby or joining an existing lobby.
+   Multiple clients can connect to the server at the same time. Then, a
+   lobby's creator client can launch a new game. The server can run
+   several games at the same time.
+
+3.  R-Type TCP Protocol
+
+   All the client-server communications before the game's launch are
+   done by using this R-Type TCP Protocol.
+
+   3a.  Data structure
+
+      Every transmission done with the R-Type TCP Protocol will use this
+      C data structure:
+
+         struct payload {
+            int body_size;
+            ACTION action;
+            char *;
+         }
+
