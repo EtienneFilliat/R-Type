@@ -178,3 +178,24 @@ Drapier                     Standards Track                     [Page 3]
 RFC 9999                    R-Type Protocols               November 2018
 
 
+      To list existing game lobbies, the client MUST send to the server
+      a payload containing:
+
+            ACTION_NAME = LIST
+
+         On success, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = OK
+	    BODY_SIZE = LOBBIES's length
+            BODY = LOBBIES
+            (where LOBBIES is the names of all the existing lobbies,
+            separated by the ';' character (ASCII: 0x3B))
+
+         On failure, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = KO
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations about the failure.
