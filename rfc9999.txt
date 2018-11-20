@@ -32,24 +32,24 @@ Table of Contents
    2.   R-Type architecture  . . . . . . . . . . . . . . . . . . . . . 2
    3.   R-Type TCP Protocol  . . . . . . . . . . . . . . . . . . . . . 2
    3a.   Data structure  . . . . . . . . . . . . . . . . . . . . . . . 2
-   3b.   Server connection . . . . . . . . . . . . . . . . . . . . . . 2
-   3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 2
-   3d.   Sprites transmission  . . . . . . . . . . . . . . . . . . . . 2
-   4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 3
+   3b.   Server connection . . . . . . . . . . . . . . . . . . . . . . 3
+   3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 3
+   3d.   Sprites transmission  . . . . . . . . . . . . . . . . . . . . 4
+   4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 4
+
+
+
+
+
+
+
+
 
 
 1.  Introduction
 
    The goal of the R-Type project is to create an online multiplayer
    copy of the classic R-Type game (1987).
-
-
-
-
-
-
-
-
 
 
 
@@ -75,7 +75,7 @@ RFC 9999                    R-Type Protocols               November 2018
    All the client-server communications before the game's launch are
    done by using this R-Type TCP Protocol.
 
-   3a.  Data structure
+   3a.  Payload
 
       Every transmission done with the R-Type TCP Protocol MUST transmit
       a payload containing this 3 datas:
@@ -107,6 +107,10 @@ RFC 9999                    R-Type Protocols               November 2018
       (corresponding to the ACTION_NAME data), then read the 4 following
       bytes (corresponding to the BODY_SIZE) and then read the BODY_SIZE
       bytes long body.
+
+      The total payload size MUST NOT exceed 1024 bytes. Thus, the total
+      body size MUST NOT exceed 1016 bytes.
+
 
 
 
@@ -141,4 +145,6 @@ RFC 9999                    R-Type Protocols               November 2018
          ACTION_NAME = KO
 
          The server MAY add a BODY data to the response payload,
-	 containing additionnal informations about the failure.
+         containing additionnal informations about the failure.
+
+   3c.  Lobby connection
