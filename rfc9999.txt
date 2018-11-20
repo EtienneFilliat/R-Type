@@ -4,12 +4,6 @@
 
 
 
-
-
-
-
-
-
 Epitech Paris                                                 M. Drapier
 Request for Comments: 9999                                    E. Filliat
 Category: Standards Track                                       M. Soler
@@ -42,23 +36,10 @@ Table of Contents
 
 
 
-
-
-
-
 1.  Introduction
 
    The goal of the R-Type project is to create an online multiplayer
    copy of the classic R-Type game (1987).
-
-
-
-
-
-Drapier                     Standards Track                     [Page 1]
-
-RFC 9999                    R-Type Protocols               November 2018
-
 
 2.  R-Type architecture
 
@@ -69,6 +50,15 @@ RFC 9999                    R-Type Protocols               November 2018
    Multiple clients can connect to the server at the same time. Then, a
    lobby's creator client can launch a new game. The server can run
    several games at the same time.
+
+
+
+
+
+Drapier                     Standards Track                     [Page 1]
+
+RFC 9999                    R-Type Protocols               November 2018
+
 
 3.  R-Type TCP Protocol
 
@@ -97,7 +87,9 @@ RFC 9999                    R-Type Protocols               November 2018
             CONNECT,
             LIST,
             JOIN,
-            CREATE
+            CREATE,
+            READY,
+            START
          };
 
       To send a payload, each data MUST be written on the TCP socket in
@@ -112,6 +104,14 @@ RFC 9999                    R-Type Protocols               November 2018
 
       The total payload size MUST NOT exceed 1024 bytes. Thus, the total
       body size MUST NOT exceed 1016 bytes.
+
+
+
+
+
+
+
+
 
 
 Drapier                     Standards Track                     [Page 2]
@@ -150,7 +150,7 @@ RFC 9999                    R-Type Protocols               November 2018
       The client can (as described in details below) create a new lobby,
       list the existing lobbies or join an already created lobby.
 
-      To create a new lobby, the client MUST send to the server a
+      To create a new game lobby, the client MUST send to the server a
       payload containing:
 
             ACTION_NAME = JOIN
@@ -174,7 +174,7 @@ RFC 9999                    R-Type Protocols               November 2018
             containing additionnal informations about the failure.
 
 Drapier                     Standards Track                     [Page 3]
-
+
 RFC 9999                    R-Type Protocols               November 2018
 
 
@@ -187,7 +187,7 @@ RFC 9999                    R-Type Protocols               November 2018
          payload containing:
 
             ACTION_NAME = OK
-	    BODY_SIZE = LOBBIES's length
+            BODY_SIZE = LOBBIES's length
             BODY = LOBBIES
             (where LOBBIES is the names of all the existing lobbies,
             separated by the ';' character (ASCII: 0x3B))
@@ -199,3 +199,23 @@ RFC 9999                    R-Type Protocols               November 2018
 
             The server MAY add a BODY data to the response payload,
             containing additionnal informations about the failure.
+
+      To join an already existing game lobby, the client MUST send to
+      the server a payload containing:
+
+            ACTION_NAME = JOIN
+            BODY_SIZE = LOBBY_NAME's length
+            BODY = LOBBY_NAME (the name of the lobby to join)
+
+         On failure, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = KO
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations about the failure.
+
+   3d.  Game start
+
+      In order to start a game, the client MUST be in a lobby.
+      It MAY NOT be the creator of the lobby.
