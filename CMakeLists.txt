@@ -14,7 +14,7 @@ set(CLIENT_INCLUDE_PATH "Client/include")
 set(SRC_CLIENT Client/src/main.cpp
 	)
 
-set(HPP_CLIENT
+set(HPP_CLIENT 
 	)
 
 #	--------------- CLIENT_LINKING ---------------
@@ -47,9 +47,12 @@ set(SERVER_INCLUDE_PATH "Server/include")
 #	------------- SERVER_RESSOURCES --------------
 
 set(SRC_SERVER Server/src/main.cpp
+		Server/src/Ecs/Entity.cpp
 	)
 
-set(HPP_SERVER
+set(HPP_SERVER Server/include/Constants.hpp
+		Server/include/IComponent.hpp
+		Server/include/Entity.hpp
 	)
 
 #	--------------- SERVER_LINKING ---------------

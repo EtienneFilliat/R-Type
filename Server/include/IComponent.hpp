@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2018
 ** R-Type
 ** File description:
-** IComponents
+** IComponent
 */
 
-#ifndef ICOMPONENTS_HPP_
-	#define ICOMPONENTS_HPP_
+#ifndef ICOMPONENT_HPP_
+	#define ICOMPONENT_HPP_
 
 	#include "Constants.hpp"
 
-class IComponents {
+class IComponent {
 	public:
-		virtual ~IComponents() = 0;
+		virtual ~IComponent() = 0;
 		virtual Constants::Comps getType() = 0;
 		virtual void setType(Constants::Comps type) = 0;
 
@@ -20,4 +20,4 @@ class IComponents {
 		Constants::Comps _type;
 };
 
-#endif /* !ICOMPONENTS_HPP_ */
+#endif /* !ICOMPONENT_HPP_ */
