@@ -78,18 +78,16 @@ RFC 9999                    R-Type Protocols               November 2018
    3a.  Data structure
 
       Every transmission done with the R-Type TCP Protocol MUST transmit
-       this C data structure:
+      a payload containing this 3 datas:
 
-         struct payload {
-            int BODY_SIZE;
-            ACTION ACTION_NAME;
-            char *BODY;
-         };
+         ACTION ACTION_NAME;
+         int BODY_SIZE;
+         char *BODY;
 
-      Where BODY_SIZE is the size (in bytes) of BODY, ACTION_NAME is a
-      field of the ACTION enumeration (described below) representing the
-      action to do with the payload, and BODY is the data to be
-      processed.
+      Where ACTION_NAME is an element of the ACTION enumeration
+      (described below) representing the action to do with the payload,
+      BODY_SIZE is the size (in bytes) of BODY, and BODY is the data to
+      be processed.
 
       The ACTION enumeration:
 
@@ -102,12 +100,13 @@ RFC 9999                    R-Type Protocols               November 2018
             CREATE
          };
 
-       To send a payload, the filled payload structure (described above)
-       MUST be directly written on the TCP socket. To receive a payload,
-       you MUST read the 4 first bytes (corresponding to the BODY_SIZE
-       in our data structure), then read the 4 following bytes
-       (corresponding to ACTION_NAME) and then read the BODY_SIZE bytes
-       long body.
+      To send a payload, each data MUST be written on the TCP socket in
+      this order: ACTION_NAME, BODY_SIZE, BODY.
+
+      To receive a payload, you MUST read the 4 first bytes
+      (corresponding to the ACTION_NAME data), then read the 4 following
+      bytes (corresponding to the BODY_SIZE) and then read the BODY_SIZE
+      bytes long body.
 
 
 
@@ -117,3 +116,29 @@ RFC 9999                    R-Type Protocols               November 2018
 
 
    3b.  Server connection
+
+      To connect to the server, the client MUST send to the server a
+      payload containing:
+
+         ACTION_NAME = CONNECT
+
+         BODY_SIZE = PLAYER_NAME's length
+
+         BODY = PLAYER_NAME
+         (PLAYER_NAME is the name chosen by the client's user)
+
+      On success, the server MUST send to the client a response payload
+      containing:
+
+         ACTION_NAME = OK
+
+         The server MAY add a BODY data to the response payload,
+	 containing additionnal informations.
+
+      On failure, the server MUST send to the client a response payload
+      containing:
+
+         ACTION_NAME = KO
+
+         The server MAY add a BODY data to the response payload,
+	 containing additionnal informations about the failure.
