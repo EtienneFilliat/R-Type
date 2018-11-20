@@ -34,7 +34,7 @@ Table of Contents
    3a.   Data structure  . . . . . . . . . . . . . . . . . . . . . . . 2
    3b.   Server connection . . . . . . . . . . . . . . . . . . . . . . 3
    3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 3
-   3d.   Sprites transmission  . . . . . . . . . . . . . . . . . . . . 4
+   3d.   Game start  . . . . . . . . . . . . . . . . . . . . . . . . . 4
    4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 4
 
 
@@ -103,6 +103,8 @@ RFC 9999                    R-Type Protocols               November 2018
       To send a payload, each data MUST be written on the TCP socket in
       this order: ACTION_NAME, BODY_SIZE, BODY.
 
+      If the BODY is empty, BODY_SIZE MUST be set to 0.
+
       To receive a payload, you MUST read the 4 first bytes
       (corresponding to the ACTION_NAME data), then read the 4 following
       bytes (corresponding to the BODY_SIZE) and then read the BODY_SIZE
@@ -110,8 +112,6 @@ RFC 9999                    R-Type Protocols               November 2018
 
       The total payload size MUST NOT exceed 1024 bytes. Thus, the total
       body size MUST NOT exceed 1016 bytes.
-
-
 
 
 Drapier                     Standards Track                     [Page 2]
@@ -125,11 +125,8 @@ RFC 9999                    R-Type Protocols               November 2018
       payload containing:
 
          ACTION_NAME = CONNECT
-
          BODY_SIZE = PLAYER_NAME's length
-
-         BODY = PLAYER_NAME
-         (PLAYER_NAME is the name chosen by the client's user)
+         BODY = PLAYER_NAME (chosen by the client's user)
 
       On success, the server MUST send to the client a response payload
       containing:
@@ -148,3 +145,36 @@ RFC 9999                    R-Type Protocols               November 2018
          containing additionnal informations about the failure.
 
    3c.  Lobby connection
+
+      Once connected to the server, the client can connect to a lobby.
+      The client can (as described in details below) create a new lobby,
+      list the existing lobbies or join an already created lobby.
+
+      To create a new lobby, the client MUST send to the server a
+      payload containing:
+
+            ACTION_NAME = JOIN
+            BODY_SIZE = LOBBY_NAME's length
+            BODY = LOBBY_NAME (chosen by the client's user)
+
+         On success, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = OK
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations.
+
+         On failure, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = KO
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations about the failure.
+
+Drapier                     Standards Track                     [Page 3]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
