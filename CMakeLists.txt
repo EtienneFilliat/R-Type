@@ -15,7 +15,7 @@ set(SRC_CLIENT Client/src/main.cpp
 	)
 
 set(HPP_CLIENT
-	)
+        )
 
 #	--------------- CLIENT_LINKING ---------------
 add_executable(${CLIENT} ${SRC_CLIENT} ${HPP_CLIENT})
@@ -47,10 +47,10 @@ set(SERVER_INCLUDE_PATH "Server/include")
 #	------------- SERVER_RESSOURCES --------------
 
 set(SRC_SERVER Server/src/main.cpp
-	)
+		Server/src/Network/TCPServer.cpp Server/src/Network/TCPServerRoutine.cpp Server/src/Network/UDPServer.cpp Server/src/Network/AServer.cpp Server/src/Network/Components/MessageComponent.cpp)
 
 set(HPP_SERVER
-	)
+		Server/include/Network/TCPServer.hpp Server/include/Network/TCPServerRoutine.hpp Server/include/Network/UDPServer.hpp Server/include/Network/Components/IServerComponent.hpp Server/include/Network/AServer.hpp Server/include/Network/Components/MessageComponent.hpp)
 
 #	--------------- SERVER_LINKING ---------------
 
@@ -64,7 +64,7 @@ target_include_directories(${SERVER} PUBLIC
 			)
 #	------------------- CONNAN -------------------
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(build/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
 #	-------------------- MISC --------------------
