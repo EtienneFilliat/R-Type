@@ -1,0 +1,287 @@
+
+
+
+
+
+
+Epitech Paris                                                 M. Drapier
+Request for Comments: 9999                                    E. Filliat
+Category: Standards Track                                       M. Soler
+                                                                  T. Pen
+                                                                 Epitech
+                                                           November 2018
+
+                            R-Type Protocols
+
+Status of this Memo
+
+   This memo is the official specification of the 2 R-Type Protocols
+   (the R-Type TCP Protocol and the R-Type UDP Protocol). The R-Type is
+   a third year project from EPITECH. Distribution of this memo is
+   unlimited.
+
+Table of Contents
+
+   1.   Introduction . . . . . . . . . . . . . . . . . . . . . . . . . 1
+   2.   R-Type architecture  . . . . . . . . . . . . . . . . . . . . . 2
+   3.   R-Type TCP Protocol  . . . . . . . . . . . . . . . . . . . . . 2
+   3a.   Data structure  . . . . . . . . . . . . . . . . . . . . . . . 2
+   3b.   Server connection . . . . . . . . . . . . . . . . . . . . . . 3
+   3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 3
+   3d.   Game start  . . . . . . . . . . . . . . . . . . . . . . . . . 5
+   4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 4
+
+
+
+
+
+
+1.  Introduction
+
+   The goal of the R-Type project is to create an online multiplayer
+   copy of the classic R-Type game (1987).
+
+2.  R-Type architecture
+
+   The R-Type architecture is a classic client-server game architecture.
+   All the game engine is in the server. A client connects to the server
+   by using the R-Type TCP protocol. When connected, the client has the
+   choice between creating a lobby or joining an existing lobby.
+   Multiple clients can connect to the server at the same time. Then, a
+   lobby's creator client can launch a new game. The server can run
+   several games at the same time.
+
+
+
+
+
+Drapier                     Standards Track                     [Page 1]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+3.  R-Type TCP Protocol
+
+   All the client-server communications before the game's launch are
+   done by using this R-Type TCP Protocol.
+
+   3a.  Payload
+
+      Every transmission done with the R-Type TCP Protocol MUST transmit
+      a payload containing this 3 datas:
+
+         ACTION ACTION_NAME;
+         int BODY_SIZE;
+         char *BODY;
+
+      Where ACTION_NAME is an element of the ACTION enumeration
+      (described below) representing the action to do with the payload,
+      BODY_SIZE is the size (in bytes) of BODY, and BODY is the data to
+      be processed.
+
+      The ACTION enumeration:
+
+         enum ACTION {
+            OK,
+            KO,
+            CONNECT,
+            CREATE,
+            LIST,
+            JOIN,
+            JOINED,
+            READY,
+            START
+         };
+
+      To send a payload, each data MUST be written on the TCP socket in
+      this order: ACTION_NAME, BODY_SIZE, BODY.
+
+      If the BODY is empty, BODY_SIZE MUST be set to 0.
+
+      To receive a payload, you MUST read the 4 first bytes
+      (corresponding to the ACTION_NAME data), then read the 4 following
+      bytes (corresponding to the BODY_SIZE) and then read the BODY_SIZE
+      bytes long body.
+
+      The total payload size MUST NOT exceed 1024 bytes. Thus, the total
+      body size MUST NOT exceed 1016 bytes.
+
+
+
+
+
+
+
+
+
+Drapier                     Standards Track                     [Page 2]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+   3b.  Server connection
+
+      To connect to the server, the client MUST send to the server a
+      payload containing:
+
+         ACTION_NAME = CONNECT
+         BODY_SIZE = PLAYER_NAME's length
+         BODY = PLAYER_NAME (chosen by the client's user)
+
+      On success, the server MUST send to the client a response payload
+      containing:
+
+         ACTION_NAME = OK
+
+         The server MAY add a BODY data to the response payload,
+	 containing additionnal informations.
+
+      On failure, the server MUST send to the client a response payload
+      containing:
+
+         ACTION_NAME = KO
+
+         The server MAY add a BODY data to the response payload,
+         containing additionnal informations about the failure.
+
+   3c.  Lobby connection
+
+      Once connected to the server, the client can connect to a lobby.
+      The client can (as described in details below) create a new lobby,
+      list the existing lobbies or join an already created lobby.
+
+      To create a new game lobby, the client MUST send to the server a
+      payload containing:
+
+            ACTION_NAME = JOIN
+            BODY_SIZE = LOBBY_NAME's length
+            BODY = LOBBY_NAME (chosen by the client's user)
+
+         On success, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = OK
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations.
+
+         On failure, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = KO
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations about the failure.
+
+Drapier                     Standards Track                     [Page 3]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+      To list existing game lobbies, the client MUST send to the server
+      a payload containing:
+
+            ACTION_NAME = LIST
+
+         On success, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = OK
+            BODY_SIZE = LOBBIES's length
+            BODY = LOBBIES_INFO
+
+            Where LOBBIES_INFO is a list of LOBBY_INFO separated by
+            a ';' character (ASCII: 0x3B)
+            LOBBY_INFO is the name of the lobby and its current number
+            of players separated by a ',' character (ASCII: 0x2C)
+
+            Example:
+
+                  /--------------------------------------\
+                  |    lobby name    | Number of players |
+                  |------------------|-------------------|
+                  |    lobby_01      |         2         |
+                  |    nice_lobby    |         1         |
+                  |    LobbyRType    |         4         |
+                  \--------------------------------------/
+
+            LOBBIES_INFO = "lobby_01,2;nice_lobby,1;LobbyRType,4"
+
+         On failure, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = KO
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations about the failure.
+
+      To join an already existing game lobby, the client MUST send to
+      the server a payload containing:
+
+            ACTION_NAME = JOIN
+            BODY_SIZE = LOBBY_NAME's length
+            BODY = LOBBY_NAME (the name of the lobby to join)
+
+
+
+Drapier                     Standards Track                     [Page 4]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+         On success, the server MUST respond to the client who joined
+         with a payload containing:
+
+            ACTION_NAME = OK
+            BODY_SIZE = PLAYER_NAMES's length
+            BODY = PLAYER_NAMES
+
+            Where PLAYER_NAMES is a list of the names of the players
+            already connected to the joined lobby, separated by a ';'
+            character (ASCII: 0x3B)
+
+            In addition, on success the server MUST say to the other
+            clients connected to the lobby that a new player joined
+            them. Thus the server MUST send to every other clients
+            connected to the lobby a payload containing:
+
+               ACTION_NAME = JOINED
+               BODY_SIZE = PLAYER_NAME's length
+               BODY = PLAYER_NAME (the name of the new player)
+
+
+         On failure, the server MUST send to the client a response
+         payload containing:
+
+            ACTION_NAME = KO
+
+            The server MAY add a BODY data to the response payload,
+            containing additionnal informations about the failure.
+
+   3d.  Game start
+
+      In order to start a game, the client MUST be in a lobby.
+      It MAY NOT be the creator of the lobby. To start the game, the
+      client MUST first send to the server a payload containing:
+
+         ACTION_NAME = READY
+
+      On success, to start the game, the server MUST send to ALL the
+      clients connected to the game lobby a payload containing:
+
+         ACTION_NAME = START
+
+         The server MAY add a BODY data to the response payload,
+         containing additionnal informations.
+
+      On failure, the server MUST send to the client a response
+      payload containing:
+
+         ACTION_NAME = KO
+
+         The server MAY add a BODY data to the response payload,
+         containing additionnal informations about the failure.
+
+
+Drapier                     Standards Track                     [Page 5]
+
