@@ -28,7 +28,7 @@ Table of Contents
    3a.   Data structure  . . . . . . . . . . . . . . . . . . . . . . . 2
    3b.   Server connection . . . . . . . . . . . . . . . . . . . . . . 3
    3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 3
-   3d.   Game start  . . . . . . . . . . . . . . . . . . . . . . . . . 4
+   3d.   Game start  . . . . . . . . . . . . . . . . . . . . . . . . . 5
    4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 4
 
 
@@ -87,6 +87,7 @@ RFC 9999                    R-Type Protocols               November 2018
             CONNECT,
             LIST,
             JOIN,
+            JOINED,
             CREATE,
             READY,
             START
@@ -104,7 +105,6 @@ RFC 9999                    R-Type Protocols               November 2018
 
       The total payload size MUST NOT exceed 1024 bytes. Thus, the total
       body size MUST NOT exceed 1016 bytes.
-
 
 
 
@@ -188,9 +188,24 @@ RFC 9999                    R-Type Protocols               November 2018
 
             ACTION_NAME = OK
             BODY_SIZE = LOBBIES's length
-            BODY = LOBBIES
-            (where LOBBIES is the names of all the existing lobbies,
-            separated by the ';' character (ASCII: 0x3B))
+            BODY = LOBBIES_INFO
+
+            Where LOBBIES_INFO is a list of LOBBY_INFO separated by
+            a ';' character (ASCII: 0x3B)
+            LOBBY_INFO is the name of the lobby and its current number
+            of players separated by a ',' character (ASCII: 0x2C)
+
+            Example:
+
+                  /--------------------------------------\
+                  |    lobby name    | Number of players |
+                  |------------------|-------------------|
+                  |    lobby_01      |         2         |
+                  |    nice_lobby    |         1         |
+                  |    LobbyRType    |         4         |
+                  \--------------------------------------/
+
+            LOBBIES_INFO = "lobby_01,2;nice_lobby,1;LobbyRType,4"
 
          On failure, the server MUST send to the client a response
          payload containing:
@@ -207,6 +222,25 @@ RFC 9999                    R-Type Protocols               November 2018
             BODY_SIZE = LOBBY_NAME's length
             BODY = LOBBY_NAME (the name of the lobby to join)
 
+
+
+
+Drapier                     Standards Track                     [Page 4]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+         On success, the server MUST respond to the client who joined
+         with a payload containing:
+
+            ACTION_NAME = OK
+            BODY_SIZE = PLAYER_NAMES's length
+            BODY = PLAYER_NAMES
+
+	    Where PLAYER_NAMES is a list of the names of the players
+	    already connected to the joined lobby, separated by a ';'
+	    character (ASCII: 0x3B)
+
          On failure, the server MUST send to the client a response
          payload containing:
 
@@ -215,7 +249,13 @@ RFC 9999                    R-Type Protocols               November 2018
             The server MAY add a BODY data to the response payload,
             containing additionnal informations about the failure.
 
+
+
+
    3d.  Game start
 
       In order to start a game, the client MUST be in a lobby.
-      It MAY NOT be the creator of the lobby.
+      It MAY NOT be the creator of the lobby. To start the game, the
+      client MUST first send to the server a payload containing:
+
+         ACTION_NAME = READY
