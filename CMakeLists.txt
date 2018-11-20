@@ -70,6 +70,10 @@ target_include_directories(${SERVER} PUBLIC
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
+#	----------------- UNIT_TEST ------------------
+
+add_subdirectory(Server/tests)
+
 #	-------------------- MISC --------------------
 
 # Set default compile flags for GCC
