@@ -85,10 +85,10 @@ RFC 9999                    R-Type Protocols               November 2018
             OK,
             KO,
             CONNECT,
+            CREATE,
             LIST,
             JOIN,
             JOINED,
-            CREATE,
             READY,
             START
          };
@@ -224,9 +224,8 @@ RFC 9999                    R-Type Protocols               November 2018
 
 
 
-
 Drapier                     Standards Track                     [Page 4]
-
+
 RFC 9999                    R-Type Protocols               November 2018
 
 
@@ -237,9 +236,19 @@ RFC 9999                    R-Type Protocols               November 2018
             BODY_SIZE = PLAYER_NAMES's length
             BODY = PLAYER_NAMES
 
-	    Where PLAYER_NAMES is a list of the names of the players
-	    already connected to the joined lobby, separated by a ';'
-	    character (ASCII: 0x3B)
+            Where PLAYER_NAMES is a list of the names of the players
+            already connected to the joined lobby, separated by a ';'
+            character (ASCII: 0x3B)
+
+            In addition, on success the server MUST say to the other
+            clients connected to the lobby that a new player joined
+            them. Thus the server MUST send to every other clients
+            connected to the lobby a payload containing:
+
+               ACTION_NAME = JOINED
+               BODY_SIZE = PLAYER_NAME's length
+               BODY = PLAYER_NAME (the name of the new player)
+
 
          On failure, the server MUST send to the client a response
          payload containing:
@@ -248,9 +257,6 @@ RFC 9999                    R-Type Protocols               November 2018
 
             The server MAY add a BODY data to the response payload,
             containing additionnal informations about the failure.
-
-
-
 
    3d.  Game start
 
