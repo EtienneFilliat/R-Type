@@ -77,12 +77,43 @@ RFC 9999                    R-Type Protocols               November 2018
 
    3a.  Data structure
 
-      Every transmission done with the R-Type TCP Protocol will use this
-      C data structure:
+      Every transmission done with the R-Type TCP Protocol MUST transmit
+       this C data structure:
 
          struct payload {
-            int body_size;
-            ACTION action;
-            char *;
-         }
+            int BODY_SIZE;
+            ACTION ACTION_NAME;
+            char *BODY;
+         };
 
+      Where BODY_SIZE is the size (in bytes) of BODY, ACTION_NAME is a
+      field of the ACTION enumeration (described below) representing the
+      action to do with the payload, and BODY is the data to be
+      processed.
+
+      The ACTION enumeration:
+
+         enum ACTION {
+            OK,
+            KO,
+            CONNECT,
+            LIST,
+            JOIN,
+            CREATE
+         };
+
+       To send a payload, the filled payload structure (described above)
+       MUST be directly written on the TCP socket. To receive a payload,
+       you MUST read the 4 first bytes (corresponding to the BODY_SIZE
+       in our data structure), then read the 4 following bytes
+       (corresponding to ACTION_NAME) and then read the BODY_SIZE bytes
+       long body.
+
+
+
+Drapier                     Standards Track                     [Page 2]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+   3b.  Server connection
