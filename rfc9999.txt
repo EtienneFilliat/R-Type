@@ -153,7 +153,7 @@ RFC 9999                    R-Type Protocols               November 2018
       To create a new game lobby, the client MUST send to the server a
       payload containing:
 
-            ACTION_NAME = JOIN
+            ACTION_NAME = CREATE
             BODY_SIZE = LOBBY_NAME's length
             BODY = LOBBY_NAME (chosen by the client's user)
 
