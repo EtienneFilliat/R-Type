@@ -31,7 +31,7 @@ Table of Contents
    3d.   Game start  . . . . . . . . . . . . . . . . . . . . . . . . . 5
    4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 6
    4a.   Frames transmission . . . . . . . . . . . . . . . . . . . . . 6
-   4b.   User actions  . . . . . . . . . . . . . . . . . . . . . . . . 7
+   4b.   Player events . . . . . . . . . . . . . . . . . . . . . . . . 7
 
 
 
@@ -335,6 +335,65 @@ RFC 9999                    R-Type Protocols               November 2018
 
    The client MUST NOT respond to the server when a payload has been
    received.
+
+
+
+
+
+
+
+Drapier                     Standards Track                     [Page 6]
+
+RFC 9999                    R-Type Protocols               November 2018
+
+
+   4b.  Player events
+
+      The player, on the client-side, can execute several actions. On
+      each player action, the client MUST send to the server a specific
+      event payload containing informations about the action. This
+      payload MUST begins with an element (on 4 bytes) from the EVENT
+      enumeration, described below:
+
+         enum EVENT {
+            MOVE,
+            SHOOT,
+            QUIT
+         };
+
+         The MOVE event:
+
+            The player wants to move (to the left, right, up or down).
+            The client MUST add to the payload an element (on 4 bytes)
+            of the DIRECTION enumeration (described below) right after
+            the EVENT element. Thus, if the player wants to move, the
+            payload MUST be 8 bytes long.
+
+            enum DIRECTION {
+               LEFT,
+               RIGHT,
+               UP,
+               DOWN
+            };
+
+         The SHOOT event:
+
+            The player wants to shoot. In this case, the payload MUST be
+            only 4 bytes long.
+
+         The QUIT event:
+
+            The player wants to quit the game. The client MUST warn the
+            server with this 4 bytes long payload before quitting. The
+            client MAY exit without any response from the server.
+
+
+
+
+
+
+
+
 
 
 
