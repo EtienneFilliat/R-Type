@@ -304,11 +304,42 @@ RFC 9999                    R-Type Protocols               November 2018
 
       A SPRITE_LIST is a succession of SPRITE.
 
-      A SPRITE is a succession of 5 numbers representing a Sprite to
+      A SPRITE is a succession of 7 numbers representing a sprite to
       display and its position. Each one of these numbers MUST be coded
-      on 4 bytes. Thus, a SPRITE MUST be 20 bytes long, and a
-      SPRITE_LIST of (n) SPRITE MUST be (n * 20) bytes long.
+      on 4 bytes. Thus, a SPRITE MUST be 28 bytes long, and a
+      SPRITE_LIST of (n) SPRITE MUST be (n * 28) bytes long.
 
-      SPRITE composition:
+      The SPRITE composition MUST be the following:
 
-         1st number =
+         1st number = the index of the sprite's spritesheet
+
+         2nd number = X coordinate (in pixels) of the sprite's top left
+                      corner in its spritesheet
+
+         3rd number = Y coordinate (in pixels) of the sprite's top left
+                      corner in its spritesheet
+
+         4th number = the sprite's width (in pixels)
+
+         5th number = the sprite's height (in pixels)
+
+         6th number = X coordinate (in pixels) of the sprite's top left
+                      corner in the game window
+
+         7th number = Y coordinate (in pixels) of the sprite's top left
+                      corner in the game window
+
+   The order of the SPRITE elements in SPRITE_LIST MUST be the final
+   order of displaying (in the game, every SPRITE will be displayed over
+   the previous ones).
+
+   The client MUST NOT respond to the server when a payload has been
+   received.
+
+
+
+
+
+
+
+Drapier                     Standards Track                     [Page 6]
