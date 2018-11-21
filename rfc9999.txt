@@ -338,10 +338,6 @@ RFC 9999                    R-Type Protocols               November 2018
 
 
 
-
-
-
-
 Drapier                     Standards Track                     [Page 6]
 
 RFC 9999                    R-Type Protocols               November 2018
@@ -386,16 +382,6 @@ RFC 9999                    R-Type Protocols               November 2018
             The player wants to quit the game. The client MUST warn the
             server with this 4 bytes long payload before quitting. The
             client MAY exit without any response from the server.
-
-
-
-
-
-
-
-
-
-
 
 
 
