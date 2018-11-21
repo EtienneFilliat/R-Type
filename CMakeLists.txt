@@ -52,6 +52,7 @@ set(SRC_SERVER Server/src/main.cpp
 		Server/src/Ecs/Components/Position.cpp
 		Server/src/Ecs/Components/Acceleration.cpp
 		Server/src/Ecs/Components/Damages.cpp
+		Server/src/Ecs/Components/HitBox.cpp
 	)
 
 set(HPP_SERVER Server/include/Constants.hpp
@@ -63,6 +64,8 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/Components/Position.hpp
 		Server/include/Components/Acceleration.hpp
 		Server/include/Components/Damages.hpp
+		Server/include/Components/HitBox.hpp
+		Server/include/Components/AI.hpp
 	)
 
 #	--------------- SERVER_LINKING ---------------
