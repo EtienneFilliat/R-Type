@@ -14,7 +14,7 @@ namespace Ecs {
 
 	class AComponent : public IComponent {
 		public:
-			virtual ~AComponent() = 0;
+			virtual ~AComponent() = default;
 			inline Constants::Comps getType() final { return _type; };
 			inline void setType(Constants::Comps newType) final { _type = newType; };
 		protected:

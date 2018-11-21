@@ -5,7 +5,7 @@
 ** Health Component source code
 */
 
-#include "Health.hpp"
+#include "Components/Health.hpp"
 
 Ecs::Health::Health(int hp)
 	: _hp(hp)

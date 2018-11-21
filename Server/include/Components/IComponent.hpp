@@ -13,7 +13,7 @@
 namespace Ecs {
 	class IComponent {
 		public:
-			virtual ~IComponent() = 0;
+			virtual ~IComponent() = default;
 			virtual Constants::Comps getType() = 0;
 			virtual void setType(Constants::Comps newType) = 0;
 
