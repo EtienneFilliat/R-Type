@@ -25,13 +25,13 @@ Table of Contents
    1.   Introduction . . . . . . . . . . . . . . . . . . . . . . . . . 1
    2.   R-Type architecture  . . . . . . . . . . . . . . . . . . . . . 2
    3.   R-Type TCP Protocol  . . . . . . . . . . . . . . . . . . . . . 2
-   3a.   Data structure  . . . . . . . . . . . . . . . . . . . . . . . 2
+   3a.   Payload . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
    3b.   Server connection . . . . . . . . . . . . . . . . . . . . . . 3
    3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 3
    3d.   Game start  . . . . . . . . . . . . . . . . . . . . . . . . . 5
-   4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 4
-
-
+   4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 6
+   4a.   Frame transmission  . . . . . . . . . . . . . . . . . . . . . 6
+   4b.   User actions  . . . . . . . . . . . . . . . . . . . . . . . . 7
 
 
 
