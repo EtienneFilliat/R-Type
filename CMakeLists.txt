@@ -50,6 +50,8 @@ set(SRC_SERVER Server/src/main.cpp
 		Server/src/Ecs/Entity.cpp
 		Server/src/Ecs/Components/Health.cpp
 		Server/src/Ecs/Components/Position.cpp
+		Server/src/Ecs/Components/Acceleration.cpp
+		Server/src/Ecs/Components/Damages.cpp
 	)
 
 set(HPP_SERVER Server/include/Constants.hpp
@@ -59,6 +61,8 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/Components/AComponent.hpp
 		Server/include/Components/Health.hpp
 		Server/include/Components/Position.hpp
+		Server/include/Components/Acceleration.hpp
+		Server/include/Components/Damages.hpp
 	)
 
 #	--------------- SERVER_LINKING ---------------

@@ -11,6 +11,7 @@
 	#include "Constants.hpp"
 
 namespace Ecs {
+
 	class IComponent {
 		public:
 			virtual ~IComponent() = default;
@@ -21,6 +22,7 @@ namespace Ecs {
 			Constants::Comps _type;
 
 	};
+
 }
 
 #endif /* !ICOMPONENT_HPP_ */
