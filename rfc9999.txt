@@ -30,7 +30,7 @@ Table of Contents
    3c.   Lobby connection  . . . . . . . . . . . . . . . . . . . . . . 3
    3d.   Game start  . . . . . . . . . . . . . . . . . . . . . . . . . 5
    4.   R-Type UDP Protocol  . . . . . . . . . . . . . . . . . . . . . 6
-   4a.   Frame transmission  . . . . . . . . . . . . . . . . . . . . . 6
+   4a.   Frames transmission . . . . . . . . . . . . . . . . . . . . . 6
    4b.   User actions  . . . . . . . . . . . . . . . . . . . . . . . . 7
 
 
@@ -285,3 +285,30 @@ RFC 9999                    R-Type Protocols               November 2018
 
 Drapier                     Standards Track                     [Page 5]
 
+RFC 9999                    R-Type Protocols               November 2018
+
+
+4.  R-Type UDP Protocol
+
+   Once the game is launched, the client-server communications are done
+   by using this R-Type UDP Protocol.
+
+   4a.  Frames transmission
+
+      The first purpose of the R-Type UDP Protocol is to send all the
+      frames to display (in the client) from the server to the
+      client.
+
+      The payload to send MUST contain all the elements to display in a
+      single frame, grouped in a SPRITE_LIST.
+
+      A SPRITE_LIST is a succession of SPRITE.
+
+      A SPRITE is a succession of 5 numbers representing a Sprite to
+      display and its position. Each one of these numbers MUST be coded
+      on 4 bytes. Thus, a SPRITE MUST be 20 bytes long, and a
+      SPRITE_LIST of (n) SPRITE MUST be (n * 20) bytes long.
+
+      SPRITE composition:
+
+         1st number =
