@@ -7,3 +7,11 @@
 
 #include "HitboxSystem.hpp"
 
+Ecs::HitboxSystem::HitboxSystem(std::list<std::shared_ptr<Entity>> &entities)
+	: ASystem(entities)
+{}
+
+void Ecs::HitboxSystem::run()
+{
+
+}

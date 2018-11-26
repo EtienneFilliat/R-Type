@@ -9,6 +9,7 @@
 #include "Components/Health.hpp"
 #include "Components/Position.hpp"
 #include "Components/Damages.hpp"
+#include "HitboxSystem.hpp"
 
 void subFct(Ecs::Entity &entity)
 {
@@ -18,6 +19,7 @@ void subFct(Ecs::Entity &entity)
 
 int main(int ac, char **av)
 {
+	Ecs::HitboxSystem test();
 	(void) ac;
 	(void) av;
 	Ecs::Entity entity(0);
