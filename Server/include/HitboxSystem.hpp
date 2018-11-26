@@ -7,16 +7,6 @@
 
 #ifndef HITBOXSYSTEM_HPP_
 	#define HITBOXSYSTEM_HPP_
-
-namespace Ecs {
-	class HitboxSystem {
-		public:
-			HitboxSystem();
-			~HitboxSystem();
-
-		protected:
-		private:
-	};
-}
+	#include "ASystem.hpp"
 
 #endif /* !HITBOXSYSTEM_HPP_ */
