@@ -9,8 +9,7 @@
 
 Ecs::Position::Position(int X, int Y)
 	: _x(X), _y(Y)
-{
-}
+{ _type = Constants::POSITION; }
 
 Ecs::Position::~Position(void)
 {}

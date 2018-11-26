@@ -9,7 +9,7 @@
 
 Ecs::Health::Health(int hp)
 	: _hp(hp)
-{}
+{ _type = Constants::HEALTH; }
 
 Ecs::Health::~Health()
 {}

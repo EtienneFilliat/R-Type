@@ -10,7 +10,11 @@
 
 namespace Constants {
     enum Comps {
-        Health
+        HEALTH,
+        HITBOX,
+        POSITION,
+        DAMAGES,
+        ACCELERATION
     };
 }
 

@@ -9,7 +9,7 @@
 
 Ecs::HitBox::HitBox(int height, int width)
 	: _height(height), _width(width)
-{}
+{ _type = Constants::HITBOX; }
 
 Ecs::HitBox::~HitBox()
 {}

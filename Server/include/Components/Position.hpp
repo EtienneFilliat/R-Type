@@ -9,10 +9,11 @@
 	#define POSITION_HPP_
 
 	#include <utility>
+	#include "AComponent.hpp"
 
 namespace Ecs {
 
-	class Position {
+	class Position : public AComponent {
 		public:
 			Position(int X, int Y);
 			~Position(void);

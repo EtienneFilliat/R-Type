@@ -13,7 +13,7 @@
 
 namespace Ecs {
 
-	class HitBox {
+	class HitBox : public AComponent {
 		public:
 			HitBox(int height, int width);
 			~HitBox();

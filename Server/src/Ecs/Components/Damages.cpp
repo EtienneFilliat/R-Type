@@ -7,19 +7,19 @@
 
 #include "Components/Damages.hpp"
 
-Ecs::Damages::Damages(int dmg)
+Damages::Damages(int dmg)
 	: _damage(dmg)
+{ _type = Constants::DAMAGES; }
+
+Damages::~Damages()
 {}
 
-Ecs::Damages::~Damages()
-{}
-
-inline void Ecs::Damages::setDamage(int newDamage) noexcept
+inline void Damages::setDamage(int newDamage) noexcept
 {
 	_damage = newDamage;
 }
 
-inline int Ecs::Damages::getDamage() noexcept
+inline int Damages::getDamage() noexcept
 {
 	return _damage;
 }

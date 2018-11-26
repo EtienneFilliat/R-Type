@@ -9,7 +9,7 @@
 
 Ecs::Acceleration::Acceleration(int Acc)
 	: _acceleration(Acc)
-{}
+{ _type = Constants::ACCELERATION; }
 
 Ecs::Acceleration::~Acceleration()
 {}

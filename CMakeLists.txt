@@ -56,7 +56,6 @@ set(SRC_SERVER Server/src/main.cpp
 	)
 
 set(HPP_SERVER Server/include/Constants.hpp
-		Server/include/IComponent.hpp
 		Server/include/Entity.hpp
 		Server/include/Components/IComponent.hpp
 		Server/include/Components/AComponent.hpp
