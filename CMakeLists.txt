@@ -14,7 +14,7 @@ set(CLIENT_INCLUDE_PATH "Client/include")
 set(SRC_CLIENT Client/src/main.cpp
 	)
 
-set(HPP_CLIENT
+set(HPP_CLIENT 
 	)
 
 #	--------------- CLIENT_LINKING ---------------
@@ -47,9 +47,24 @@ set(SERVER_INCLUDE_PATH "Server/include")
 #	------------- SERVER_RESSOURCES --------------
 
 set(SRC_SERVER Server/src/main.cpp
+		Server/src/Ecs/Entity.cpp
+		Server/src/Ecs/Components/Health.cpp
+		Server/src/Ecs/Components/Position.cpp
+		Server/src/Ecs/Components/Acceleration.cpp
+		Server/src/Ecs/Components/Damages.cpp
+		Server/src/Ecs/Components/HitBox.cpp
 	)
 
-set(HPP_SERVER
+set(HPP_SERVER Server/include/Constants.hpp
+		Server/include/Entity.hpp
+		Server/include/Components/IComponent.hpp
+		Server/include/Components/AComponent.hpp
+		Server/include/Components/Health.hpp
+		Server/include/Components/Position.hpp
+		Server/include/Components/Acceleration.hpp
+		Server/include/Components/Damages.hpp
+		Server/include/Components/HitBox.hpp
+		Server/include/Components/AI.hpp
 	)
 
 #	--------------- SERVER_LINKING ---------------
@@ -66,6 +81,10 @@ target_include_directories(${SERVER} PUBLIC
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
+
+#	----------------- UNIT_TEST ------------------
+
+add_subdirectory(Server/tests)
 
 #	-------------------- MISC --------------------
 
