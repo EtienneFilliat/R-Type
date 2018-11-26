@@ -16,8 +16,9 @@ namespace Ecs {
 		public:
 			Health(int hp = 100);
 			~Health();
-			inline int getHp() noexcept;
-			inline void setHp(int newHp) noexcept;
+			inline int getHp() noexcept { return _hp; };
+			inline void setHp(int newHp) noexcept { _hp = newHp; };
+
 		private:
 			int _hp;
 	};

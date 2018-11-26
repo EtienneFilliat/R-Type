@@ -25,6 +25,13 @@ void addHealthComp(Ecs::Entity &entity)
 	entity.addComp<Ecs::Health>(healthComponent);
 }
 
+void addAndChangeHealthComp(Ecs::Entity &entity)
+{
+	std::shared_ptr<Ecs::Health> healthComponent(new Ecs::Health(10));
+	healthComponent.get()->setHp(42);
+	entity.addComp<Ecs::Health>(healthComponent);
+}
+
 Test(Entity, addComponent) {
 	Ecs::Entity entity(0);
 	bool has;
@@ -41,4 +48,13 @@ Test(Entity, getComp) {
 	entity.addComp<Ecs::Health>(healthComponent);
 	auto comp = entity.getComp<Ecs::Health>();
 	cr_assert_eq(comp.get(), healthComponent.get());
+}
+
+Test(Entity, ReadEntityValue)
+{
+	Ecs::Entity entity(0);
+
+	addAndChangeHealthComp(entity);
+	auto comp = entity.getComp<Ecs::Health>();
+	cr_assert_eq(comp.get()->getHp(), 42);
 }

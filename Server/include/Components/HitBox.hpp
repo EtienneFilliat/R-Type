@@ -17,9 +17,20 @@ namespace Ecs {
 		public:
 			HitBox(int height, int width);
 			~HitBox();
-			inline std::pair<int, int> getHitBoxSize();
-			inline void setHitBoxSize(int height, int width) noexcept;
-			inline void setHitBoxSize(std::pair<int, int> size) noexcept;
+			inline std::pair<int, int> getHitBoxSize()
+			{
+				return std::pair<int, int>(_height, _width);
+			}
+			inline void setHitBoxSize(int height, int width) noexcept
+			{
+				_height = height;
+				_width = width;
+			}
+			inline void setHitBoxSize(std::pair<int, int> size) noexcept
+			{
+				_height = size.first;
+				_height = size.second;
+			}
 
 		private:
 			int _height;

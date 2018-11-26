@@ -13,13 +13,3 @@ Damages::Damages(int dmg)
 
 Damages::~Damages()
 {}
-
-inline void Damages::setDamage(int newDamage) noexcept
-{
-	_damage = newDamage;
-}
-
-inline int Damages::getDamage() noexcept
-{
-	return _damage;
-}

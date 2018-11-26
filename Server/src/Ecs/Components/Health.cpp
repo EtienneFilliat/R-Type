@@ -13,13 +13,3 @@ Ecs::Health::Health(int hp)
 
 Ecs::Health::~Health()
 {}
-
-inline int Ecs::Health::getHp() noexcept
-{
-	return _hp;
-}
-
-inline void Ecs::Health::setHp(int newHp) noexcept
-{
-	_hp = newHp;
-}
