@@ -21,6 +21,14 @@ namespace Ecs {
 	private:
 		std::list<std::shared_ptr<AComponent>> _Comps;
 		unsigned int _id;
+		template <class T1>
+		bool hasComps()
+		{
+			static_assert(std::is_base_of<AComponent, T1>::value, "T must inherit from AComponent");
+			T1 _Comps;
+
+			return hasComp<T1>();
+		}
 	public:
 		Entity(unsigned int = 0);
 		~Entity();
