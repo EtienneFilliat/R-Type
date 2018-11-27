@@ -15,7 +15,7 @@ namespace Ecs {
 
 	class Position : public AComponent {
 		public:
-			Position(int X, int Y);
+			Position(int X = 0, int Y = 0);
 			~Position(void);
 			inline void setXPos(int X) noexcept { _x = X; };
 			inline void setYPos(int Y) noexcept { _y = Y; };

@@ -6,11 +6,11 @@
 */
 
 #include "HitboxSystem.hpp"
-#include "HitBox.hpp"
-#include "Damages.hpp"
-#include "Health.hpp"
-#include "AI.hpp"
-#include "Position.hpp"
+#include "Components/HitBox.hpp"
+#include "Components/Damages.hpp"
+#include "Components/Health.hpp"
+#include "Components/AI.hpp"
+#include "Components/Position.hpp"
 
 Ecs::HitboxSystem::HitboxSystem(std::list<std::shared_ptr<Entity>> &entities)
 	: ASystem(entities)

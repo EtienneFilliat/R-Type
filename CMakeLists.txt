@@ -69,6 +69,7 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/Components/Damages.hpp
 		Server/include/Components/HitBox.hpp
 		Server/include/Components/AI.hpp
+		Server/include/Components/Weapon.hpp
 	)
 
 #	--------------- SERVER_LINKING ---------------
