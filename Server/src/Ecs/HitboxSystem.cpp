@@ -70,5 +70,8 @@ void Ecs::HitboxSystem::checkForDamages(std::shared_ptr<Entity> &entity,
 void Ecs::HitboxSystem::takeDamages(std::shared_ptr<Entity> &entity,
 			std::shared_ptr<Entity> &otherEntity)
 {
+	int currentEntityHealth = entity.get()->getComp<Health>()->getHp();
 
+	currentEntityHealth -= otherEntity.get()->getComp<Damages>()->getDamage();
+	entity.get()->getComp<Health>()->setHp(currentEntityHealth);
 }
