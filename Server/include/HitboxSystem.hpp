@@ -16,6 +16,13 @@ namespace Ecs {
 			HitboxSystem(std::list<std::shared_ptr<Entity>> &entities);
 			void run() final;
 		private:
+			void selectHitType(std::shared_ptr<Entity> &entity);
+			void AIHit(std::shared_ptr<Entity> &entity);
+			void nonAIHit(std::shared_ptr<Entity> &entity);
+			void checkForDamages(std::shared_ptr<Entity> &entity,
+				std::shared_ptr<Entity> &otherEntity);
+			void takeDamages(std::shared_ptr<Entity> &entity,
+				std::shared_ptr<Entity> &otherEntity);
 	};
 
 }

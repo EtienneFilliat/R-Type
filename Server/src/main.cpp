@@ -19,7 +19,6 @@ void subFct(Ecs::Entity &entity)
 
 int main(int ac, char **av)
 {
-	Ecs::HitboxSystem test();
 	(void) ac;
 	(void) av;
 	Ecs::Entity entity(0);
