@@ -11,6 +11,7 @@
 #include "Components/Health.hpp"
 #include "Components/AI.hpp"
 #include "Components/Position.hpp"
+#include "Components/Weapon.hpp"
 
 Ecs::HitboxSystem::HitboxSystem(std::list<std::shared_ptr<Entity>> &entities)
 	: ASystem(entities)
@@ -35,7 +36,7 @@ void Ecs::HitboxSystem::selectHitType(std::shared_ptr<Entity> &entity)
 
 void Ecs::HitboxSystem::AIHit(std::shared_ptr<Entity> &entity) {
 	for (auto &otherEntity : _Entities) {
-		if (otherEntity.get()->hasComps<HitBox, Position, Damages>())
+		if (otherEntity.get()->hasComps<HitBox, Position, Damages, Weapon>())
 			checkForDamages(entity, otherEntity);
 	}
 }
