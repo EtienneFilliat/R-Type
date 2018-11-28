@@ -25,6 +25,7 @@ set(HEAD
 	../include/ISystem.hpp
 	../include/ASystem.hpp
 	../include/HitboxSystem.hpp
+	../include/AISystem.hpp
 	../include/Components/IComponent.hpp
 	../include/Components/AComponent.hpp
 	../include/Components/Health.hpp
