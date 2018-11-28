@@ -13,6 +13,7 @@
 #include "Components/Acceleration.hpp"
 #include "Constants.hpp"
 #include "EntityManager.hpp"
+#include "Weapon.hpp"
 
 Ecs::EntityManager::EntityManager()
 {}
@@ -30,11 +31,13 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 	std::shared_ptr<Health> healthComponent(new Health(Constants::DefaultPlayerHealth));
 	std::shared_ptr<Damages> damagesComponent(new Damages(Constants::DefaultPlayerDamages));
 	std::shared_ptr<Position> posComponent(new Position(Constants::DefaultPlayerPosX, Constants::DefaultPlayerPosY));
+	std::shared_ptr<Weapon> weaponComponent(new Weapon());
 	// Add Player Compoenent to the Entity
 	playerEntity.get()->addComp<Acceleration>(accComponent);
 	playerEntity.get()->addComp<Health>(healthComponent);
 	playerEntity.get()->addComp<Damages>(damagesComponent);
 	playerEntity.get()->addComp<Position>(posComponent);
+	playerEntity.get()->addComp<Weapon>(weaponComponent);
 	_entityList.push_back(playerEntity);
 	return id;
 }
