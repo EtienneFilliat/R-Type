@@ -9,6 +9,8 @@ project(${CLIENT} LANGUAGES CXX)
 
 set(SRC
 	../src/Ecs/Entity.cpp
+	../src/Ecs/EntityManager.cpp
+	../src/Ecs/HitboxSystem.cpp
 	../src/Ecs/Components/Health.cpp
 	../src/Ecs/Components/Position.cpp
 	../src/Ecs/Components/Acceleration.cpp
@@ -19,6 +21,10 @@ set(SRC
 set(HEAD
 	../include/Constants.hpp
 	../include/Entity.hpp
+	../include/EntityManager.hpp
+	../include/ISystem.hpp
+	../include/ASystem.hpp
+	../include/HitboxSystem.hpp
 	../include/Components/IComponent.hpp
 	../include/Components/AComponent.hpp
 	../include/Components/Health.hpp
@@ -27,10 +33,13 @@ set(HEAD
 	../include/Components/Damages.hpp
 	../include/Components/HitBox.hpp
 	../include/Components/AI.hpp
+	../include/Components/Weapon.hpp
 )
 
 set(TESTS
 	EntityTests.cpp
+	EntityManagerTests.cpp
+	HitboxSystemTests.cpp
 )
 
 add_executable(${OUTPUT} ${SRC} ${HEAD} ${TESTS})

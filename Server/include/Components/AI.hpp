@@ -14,7 +14,7 @@ namespace Ecs {
 
 	class AI : public AComponent {
 		public:
-			AI() = default;
+			AI() { _type = Constants::AI; };
 			~AI() = default;
 		private:
 			const bool _isAI = true;

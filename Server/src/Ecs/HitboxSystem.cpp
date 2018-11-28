@@ -26,7 +26,7 @@ void Ecs::HitboxSystem::run()
 	}
 }
 
-void Ecs::HitboxSystem::selectHitType(std::shared_ptr<Entity> &entity)
+void Ecs::HitboxSystem::selectHitType(std::shared_ptr<Entity> entity)
 {
 	if (entity.get()->hasComp<AI>())
 		AIHit(entity);
@@ -34,22 +34,22 @@ void Ecs::HitboxSystem::selectHitType(std::shared_ptr<Entity> &entity)
 		nonAIHit(entity);
 }
 
-void Ecs::HitboxSystem::AIHit(std::shared_ptr<Entity> &entity) {
+void Ecs::HitboxSystem::AIHit(std::shared_ptr<Entity> entity) {
 	for (auto &otherEntity : _Entities) {
 		if (otherEntity.get()->hasComps<HitBox, Position, Damages, Weapon>())
 			checkForDamages(entity, otherEntity);
 	}
 }
 
-void Ecs::HitboxSystem::nonAIHit(std::shared_ptr<Entity> &entity) {
+void Ecs::HitboxSystem::nonAIHit(std::shared_ptr<Entity> entity) {
 	for (auto &otherEntity : _Entities) {
 		if (otherEntity.get()->hasComps<HitBox, Position, Damages, AI>())
 			checkForDamages(entity, otherEntity);
 	}
 }
 
-void Ecs::HitboxSystem::checkForDamages(std::shared_ptr<Entity> &entity,
-			std::shared_ptr<Entity> &otherEntity)
+void Ecs::HitboxSystem::checkForDamages(std::shared_ptr<Entity> entity,
+			std::shared_ptr<Entity> otherEntity)
 {
 	std::pair<int, int> entityPos =
 		entity.get()->getComp<Position>()->getPosition();
@@ -68,8 +68,8 @@ void Ecs::HitboxSystem::checkForDamages(std::shared_ptr<Entity> &entity,
 	}
 }
 
-void Ecs::HitboxSystem::takeDamages(std::shared_ptr<Entity> &entity,
-			std::shared_ptr<Entity> &otherEntity)
+void Ecs::HitboxSystem::takeDamages(std::shared_ptr<Entity> entity,
+			std::shared_ptr<Entity> otherEntity)
 {
 	int currentEntityHealth = entity.get()->getComp<Health>()->getHp();
 

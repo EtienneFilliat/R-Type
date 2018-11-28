@@ -5,10 +5,13 @@
 ** Server main
 */
 
+#include <iostream>
 #include "Entity.hpp"
 #include "Components/Health.hpp"
 #include "Components/Position.hpp"
 #include "Components/Damages.hpp"
+#include "Components/Weapon.hpp"
+#include "EntityManager.hpp"
 #include "HitboxSystem.hpp"
 
 void subFct(Ecs::Entity &entity)
@@ -25,6 +28,6 @@ int main(int ac, char **av)
 	Ecs::Position posComponent(50, 40);
 
 	subFct(entity);
-	bool ret = entity.hasComp<Ecs::Health>();
+	entity.hasComp<Ecs::Health>();
 	return 0;
 }

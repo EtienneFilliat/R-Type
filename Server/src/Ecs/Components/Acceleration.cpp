@@ -13,13 +13,3 @@ Ecs::Acceleration::Acceleration(int Acc)
 
 Ecs::Acceleration::~Acceleration()
 {}
-
-inline int Ecs::Acceleration::getAcceleration() noexcept
-{
-	return _acceleration;
-}
-
-inline void Ecs::Acceleration::setAcceleration(int Acc) noexcept
-{
-	_acceleration = Acc;
-}

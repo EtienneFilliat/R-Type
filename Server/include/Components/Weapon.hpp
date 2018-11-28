@@ -13,12 +13,12 @@ namespace Ecs {
 
 	class Weapon : public AComponent {
 		public:
-			Weapon() = default;
-			~Weapon() = default;
-			bool isWeapon() {return true;};
+			Weapon() { _type = Constants::WEAPON; };
+			~Weapon() {};
+			inline bool isWeapon() {return true;};
 
 		private:
-			bool _isWeapon = true;
+			const bool _isWeapon = true;
 	};
 
 }
