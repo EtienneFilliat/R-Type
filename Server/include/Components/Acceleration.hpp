@@ -16,8 +16,9 @@ namespace Ecs {
 		public:
 			Acceleration(int Acc = 2);
 			~Acceleration();
-			inline void setAcceleration(int Acc) noexcept;
-			inline int getAcceleration() noexcept;
+			inline void setAcceleration(int Acc) noexcept { _acceleration = Acc; };
+			inline int getAcceleration() noexcept { return _acceleration; }
+
 		private:
 			int _acceleration;
 	};

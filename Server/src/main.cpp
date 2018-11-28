@@ -25,6 +25,6 @@ int main(int ac, char **av)
 	Ecs::Position posComponent(50, 40);
 
 	subFct(entity);
-	bool ret = entity.hasComp<Ecs::Health>();
+	entity.hasComp<Ecs::Health>();
 	return 0;
 }
