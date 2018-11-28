@@ -17,12 +17,12 @@ namespace Ecs {
 			void run() final;
 			void takeDamages(std::shared_ptr<Entity> entity,
 				std::shared_ptr<Entity> otherEntity);
+			void checkForDamages(std::shared_ptr<Entity> entity,
+				std::shared_ptr<Entity> otherEntity);
 		private:
 			void selectHitType(std::shared_ptr<Entity> entity);
 			void AIHit(std::shared_ptr<Entity> entity);
 			void nonAIHit(std::shared_ptr<Entity> entity);
-			void checkForDamages(std::shared_ptr<Entity> entity,
-				std::shared_ptr<Entity> otherEntity);
 	};
 
 }

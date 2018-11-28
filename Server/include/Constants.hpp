@@ -29,6 +29,8 @@ namespace Constants
 	const int DefaultPlayerDamages = 20;
 	const int DefaultPlayerPosX = 100;
 	const int DefaultPlayerPosY = 100;
+	const int DefaultHitboxSizeX = 100;
+	const int DefaultHitboxSizeY = 100;
 
 } // namespace Constants
 
