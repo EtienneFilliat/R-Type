@@ -12,9 +12,12 @@ set(CLIENT_INCLUDE_PATH "Client/include")
 #	------------- CLIENT_RESSOURCES --------------
 
 set(SRC_CLIENT Client/src/main.cpp
+  Client/src/Image.cpp
+  Client/src/Button.cpp
+  Client/src/Menu.cpp
 	)
 
-set(HPP_CLIENT
+set(HPP_CLIENT Client/include/Menu.hpp
 	)
 
 #	--------------- CLIENT_LINKING ---------------
