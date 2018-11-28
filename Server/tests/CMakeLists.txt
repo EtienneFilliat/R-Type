@@ -39,6 +39,7 @@ set(HEAD
 set(TESTS
 	EntityTests.cpp
 	EntityManagerTests.cpp
+	HitboxSystemTests.cpp
 )
 
 add_executable(${OUTPUT} ${SRC} ${HEAD} ${TESTS})
