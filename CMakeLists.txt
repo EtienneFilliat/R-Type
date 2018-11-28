@@ -24,22 +24,14 @@ set(HPP_CLIENT Client/include/Menu.hpp
 add_executable(${CLIENT} ${SRC_CLIENT} ${HPP_CLIENT})
 target_link_libraries(${CLIENT}
 			CONAN_PKG::boost
+			CONAN_PKG::sfml
 			)
 target_include_directories(${CLIENT} PUBLIC
 			${CONAN_INCLUDE_DIRS_BOOST}
+			${CONAN_INCLUDE_DIRS_SFML}
 			${CLIENT_INCLUDE_PATH}
 			)
-# if(${WIN32})
-# 	add_custom_command(
-# 		TARGET ${CLIENT} POST_BUILD
-# 		COMMAND ${CMAKE_COMMAND} -E copy_if_different
-# 			$<TARGET_FILE:Qt5::Widgets>
-# 			$<TARGET_FILE:Qt5::Gui>
-# 			$<TARGET_FILE:Qt5::Core>
-# 			$<TARGET_FILE:Qt5::Network>
-# 			$<TARGET_FILE_DIR:${CLIENT}>
-# 	)
-# endif(${WIN32})
+
 #	------------------- SERVER -------------------
 
 set(SERVER r-type_server)
