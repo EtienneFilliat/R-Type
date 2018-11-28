@@ -13,8 +13,8 @@ namespace Ecs {
 
 	class Weapon : public AComponent {
 		public:
-			Weapon() = default;
-			~Weapon() = default;
+			Weapon() { _type = Constants::WEAPON; };
+			~Weapon() {};
 			inline bool isWeapon() {return true;};
 
 		private:

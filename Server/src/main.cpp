@@ -5,10 +5,13 @@
 ** Server main
 */
 
+#include <iostream>
 #include "Entity.hpp"
 #include "Components/Health.hpp"
 #include "Components/Position.hpp"
 #include "Components/Damages.hpp"
+#include "Components/Weapon.hpp"
+#include "EntityManager.hpp"
 #include "HitboxSystem.hpp"
 
 void subFct(Ecs::Entity &entity)

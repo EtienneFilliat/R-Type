@@ -18,7 +18,9 @@ namespace Constants
 		HITBOX,
 		POSITION,
 		DAMAGES,
-		ACCELERATION
+		ACCELERATION,
+		WEAPON,
+		AI
 	};
 
 	// Player and Monsters defaults Stats

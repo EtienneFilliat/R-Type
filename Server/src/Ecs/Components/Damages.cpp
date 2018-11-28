@@ -7,9 +7,9 @@
 
 #include "Components/Damages.hpp"
 
-Damages::Damages(int dmg)
+Ecs::Damages::Damages(int dmg)
 	: _damage(dmg)
 { _type = Constants::DAMAGES; }
 
-Damages::~Damages()
+Ecs::Damages::~Damages()
 {}

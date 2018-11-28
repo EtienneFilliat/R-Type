@@ -10,6 +10,7 @@
 
 	#include <list>
 	#include <memory>
+	#include <iostream>
 	#include "Entity.hpp"
 
 namespace Ecs {

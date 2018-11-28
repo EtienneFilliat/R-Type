@@ -10,10 +10,10 @@
 #include "Components/Position.hpp"
 #include "Components/Damages.hpp"
 #include "Components/HitBox.hpp"
+#include "Components/Weapon.hpp"
 #include "Components/Acceleration.hpp"
 #include "Constants.hpp"
 #include "EntityManager.hpp"
-#include "Weapon.hpp"
 
 Ecs::EntityManager::EntityManager()
 {}
@@ -36,8 +36,8 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 	playerEntity.get()->addComp<Acceleration>(accComponent);
 	playerEntity.get()->addComp<Health>(healthComponent);
 	playerEntity.get()->addComp<Damages>(damagesComponent);
-	playerEntity.get()->addComp<Position>(posComponent);
 	playerEntity.get()->addComp<Weapon>(weaponComponent);
+	playerEntity.get()->addComp<Position>(posComponent);
 	_entityList.push_back(playerEntity);
 	return id;
 }
