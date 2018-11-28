@@ -14,10 +14,13 @@ namespace Ecs {
 
 	class AI : public AComponent {
 		public:
-			AI() { _type = Constants::AI; };
+			AI(int aiPattern = 0) : _aiPattern(aiPattern)
+				{ _type = Constants::AI; };
 			~AI() = default;
+			inline int getAIPattern() { return _aiPattern; };
 		private:
 			const bool _isAI = true;
+			int _aiPattern;
 	};
 
 }

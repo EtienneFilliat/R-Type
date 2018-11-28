@@ -63,6 +63,7 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/ISystem.hpp
 		Server/include/ASystem.hpp
 		Server/include/HitboxSystem.hpp
+		Server/include/AISystem.hpp
 		Server/include/Components/IComponent.hpp
 		Server/include/Components/AComponent.hpp
 		Server/include/Components/Health.hpp

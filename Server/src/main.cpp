@@ -22,6 +22,7 @@ void subFct(Ecs::Entity &entity)
 
 int main(int ac, char **av)
 {
+
 	(void) ac;
 	(void) av;
 	Ecs::Entity entity(0);

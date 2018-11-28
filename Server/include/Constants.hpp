@@ -29,6 +29,13 @@ namespace Constants
 	const int DefaultPlayerDamages = 20;
 	const int DefaultPlayerPosX = 100;
 	const int DefaultPlayerPosY = 100;
+
+	const int DefaultMonsterAccel = 2;
+	const int DefaultMonsterHealth = 100;
+	const int DefaultMonsterDamages = 10;
+	const int DefaultMonsterPosX = 800;
+	const int DefaultMonsterPosY = 300;
+
 	const int DefaultHitboxSizeX = 100;
 	const int DefaultHitboxSizeY = 100;
 
