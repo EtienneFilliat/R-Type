@@ -5,7 +5,9 @@
 // Menu class for SFML R-Type
 
 #include <iostream>
+#include <memory>
 #include "Window.hpp"
+#include "Game.hpp"
 
 
 Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
@@ -40,21 +42,6 @@ void Menu::Window::Events()
 	}
 }
 
-void Menu::Window::GameEvents()
-{
-	sf::Event event;
-	while (window.pollEvent(event)) {
-		if (event.type == sf::Event::Closed)
-			window.close();
-	}
-}
-
-void Menu::Window::GameDisplay()
-{
-	window.clear();
-	window.display();
-}
-
 void Menu::Window::Display()
 {
 	window.clear();
@@ -65,13 +52,15 @@ void Menu::Window::Display()
 
 void Menu::Window::Loop()
 {
+	std::unique_ptr<Game> game(new Game(window));
+
 	while (window.isOpen()) {
 		if (!inGame) {
 			Events();
 			Display();
 		} else {
-			GameEvents();
-			GameDisplay();
+			game->GameEvents();
+			game->GameDisplay();
 		}
 	}
 }

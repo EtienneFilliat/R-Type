@@ -15,11 +15,13 @@ set(SRC_CLIENT Client/src/main.cpp
 	Client/src/Image.cpp
 	Client/src/Button.cpp
 	Client/src/Window.cpp
+	Client/src/Game.cpp
 	)
 
 set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Button.hpp
 		Client/include/Image.hpp
+		Client/include/Game.hpp
 	)
 
 #	--------------- CLIENT_LINKING ---------------

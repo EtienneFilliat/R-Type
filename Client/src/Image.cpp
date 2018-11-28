@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Image.hpp"
 
-Menu::Image::Image(std::string _path, float posX, float posY)
+Image::Image(std::string _path, float posX, float posY)
 	: path(_path)
 {
 	if (!texture.loadFromFile(path))
