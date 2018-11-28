@@ -4,7 +4,8 @@
 // File description:
 // Image class for SFML R-Type
 
-#include "Menu.hpp"
+#include <iostream>
+#include "Image.hpp"
 
 Menu::Image::Image(std::string _path, float posX, float posY)
 	: path(_path)

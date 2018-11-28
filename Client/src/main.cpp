@@ -5,11 +5,11 @@
 ** Client main
 */
 
-#include "Menu.hpp"
+#include "Window.hpp"
 
 int main()
 {
-	Menu::Window menu(sf::VideoMode(MENU_DEFAULT_WIDTH, MENU_DEFAULT_HEIGHT), sf::String(MENU_TITLE));
-	menu.Loop();
+	Menu::Window window(sf::VideoMode(MENU_DEFAULT_WIDTH, MENU_DEFAULT_HEIGHT), sf::String(MENU_TITLE));
+	window.Loop();
 	return 0;
 }

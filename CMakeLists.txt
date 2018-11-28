@@ -12,20 +12,24 @@ set(CLIENT_INCLUDE_PATH "Client/include")
 #	------------- CLIENT_RESSOURCES --------------
 
 set(SRC_CLIENT Client/src/main.cpp
-  Client/src/Image.cpp
-  Client/src/Button.cpp
-  Client/src/Menu.cpp
+	Client/src/Image.cpp
+	Client/src/Button.cpp
+	Client/src/Window.cpp
 	)
 
-set(HPP_CLIENT Client/include/Menu.hpp
+set(HPP_CLIENT Client/include/Window.hpp
+		Client/include/Button.hpp
+		Client/include/Image.hpp
 	)
 
 #	--------------- CLIENT_LINKING ---------------
 add_executable(${CLIENT} ${SRC_CLIENT} ${HPP_CLIENT})
+
 target_link_libraries(${CLIENT}
 			CONAN_PKG::boost
 			CONAN_PKG::sfml
 			)
+
 target_include_directories(${CLIENT} PUBLIC
 			${CONAN_INCLUDE_DIRS_BOOST}
 			${CONAN_INCLUDE_DIRS_SFML}
