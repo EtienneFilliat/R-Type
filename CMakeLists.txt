@@ -48,6 +48,7 @@ set(SERVER_INCLUDE_PATH "Server/include")
 
 set(SRC_SERVER Server/src/main.cpp
 		Server/src/Ecs/Entity.cpp
+		Server/src/Ecs/EntityManager.cpp
 		Server/src/Ecs/Components/Health.cpp
 		Server/src/Ecs/Components/Position.cpp
 		Server/src/Ecs/Components/Acceleration.cpp
@@ -57,6 +58,7 @@ set(SRC_SERVER Server/src/main.cpp
 
 set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/Entity.hpp
+		Server/include/EntityManager.hpp
 		Server/include/Components/IComponent.hpp
 		Server/include/Components/AComponent.hpp
 		Server/include/Components/Health.hpp

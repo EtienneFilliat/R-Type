@@ -9,6 +9,7 @@ project(${CLIENT} LANGUAGES CXX)
 
 set(SRC
 	../src/Ecs/Entity.cpp
+	../src/Ecs/EntityManager.cpp
 	../src/Ecs/Components/Health.cpp
 	../src/Ecs/Components/Position.cpp
 	../src/Ecs/Components/Acceleration.cpp
@@ -19,6 +20,7 @@ set(SRC
 set(HEAD
 	../include/Constants.hpp
 	../include/Entity.hpp
+	../include/EntityManager.hpp
 	../include/Components/IComponent.hpp
 	../include/Components/AComponent.hpp
 	../include/Components/Health.hpp
@@ -31,6 +33,7 @@ set(HEAD
 
 set(TESTS
 	EntityTests.cpp
+	EntityManagerTests.cpp
 )
 
 add_executable(${OUTPUT} ${SRC} ${HEAD} ${TESTS})
