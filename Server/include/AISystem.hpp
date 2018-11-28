@@ -16,6 +16,9 @@ namespace Ecs {
 			AISystem(std::list<std::shared_ptr<Entity>> &entities);
 			void run() final;
 		private:
+			void moveAI(std::shared_ptr<Entity> entity);
+			void AIPattern1(std::shared_ptr<Entity> entity);
+			void AIPattern2(std::shared_ptr<Entity> entity);
 	};
 
 }
