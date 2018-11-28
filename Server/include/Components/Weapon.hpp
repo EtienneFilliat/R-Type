@@ -15,10 +15,10 @@ namespace Ecs {
 		public:
 			Weapon() = default;
 			~Weapon() = default;
-			bool isWeapon() {return true;};
+			inline bool isWeapon() {return true;};
 
 		private:
-			bool _isWeapon = true;
+			const bool _isWeapon = true;
 	};
 
 }
