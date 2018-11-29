@@ -34,6 +34,7 @@ void UDPServer::routine(const boost::system::error_code &error, std::size_t size
 	std::cout << "Data Received (" << size << ")" << std::endl;
 	if (!error) {
 		data = _clientStreamBuffer.read(size);
+		std::cout << data.event << std::endl;
 		if (_components.find(data.event) != _components.end())
 			(*(_components.find(data.event))->second).run(_socket, _endpoint, data);
 		this->read();
