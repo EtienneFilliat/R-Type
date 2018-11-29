@@ -17,6 +17,7 @@ class UDPServer : public AServer {
 public:
 	UDPServer(boost::asio::io_service &, unsigned short);
 	~UDPServer() final = default;
+	void send(struct UDPServerStreamBufferData, boost::asio::ip::udp::endpoint);
 
 private:
 	boost::asio::ip::udp::socket _socket;

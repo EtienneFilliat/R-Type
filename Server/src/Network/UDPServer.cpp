@@ -14,6 +14,13 @@ UDPServer::UDPServer(boost::asio::io_service &ioService, unsigned short port)
 	this->read();
 }
 
+void UDPServer::send(struct UDPServerStreamBufferData data, boost::asio::ip::udp::endpoint endpoint)
+{
+	std::cout << "sended" << std::endl;
+	_serverStreamBuffer.write(data);
+	_socket.send_to(_serverStreamBuffer.getStreamBuffer().data(), endpoint);
+}
+
 void UDPServer::read()
 {
 	auto buff = _clientStreamBuffer.getStreamBuffer().prepare(512);

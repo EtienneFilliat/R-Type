@@ -23,7 +23,7 @@ struct UDPClientStreamBufferData UDPClientStreamBuffer::read(std::size_t size)
 {
 	struct UDPClientStreamBufferData data = {"", -1, -1};
 
-	_streamBuffer.commit(512);
+	_streamBuffer.commit(size);
 	std::getline(_iStream, data.playerName);
 	_iStream.read(reinterpret_cast<char *>(&data.event), sizeof(int));
 	_iStream.read(reinterpret_cast<char *>(&data.direction), sizeof(int));
