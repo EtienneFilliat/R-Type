@@ -25,7 +25,7 @@ private:
 	UDPClientStreamBuffer _clientStreamBuffer;
 
 	void read();
-	void routine(const boost::system::error_code &);
+	void routine(const boost::system::error_code &, std::size_t);
 };
 
 #endif //R_TYPE_SERVER_UDPSERVER_HPP

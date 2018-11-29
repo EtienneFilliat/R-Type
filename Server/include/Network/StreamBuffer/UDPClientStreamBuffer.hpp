@@ -21,7 +21,7 @@ class UDPClientStreamBuffer : public AStreamBuffer {
 	UDPClientStreamBuffer();
 	~UDPClientStreamBuffer() final = default;
 	void write(struct UDPClientStreamBufferData &);
-	struct UDPClientStreamBufferData read();
+	struct UDPClientStreamBufferData read(std::size_t);
 };
 
 #endif //R_TYPE_SERVER_UDPCLIENTSTREAMBUFFER_HPP
