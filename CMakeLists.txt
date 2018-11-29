@@ -22,6 +22,7 @@ set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Button.hpp
 		Client/include/Image.hpp
 		Client/include/Game.hpp
+		Client/include/Constants/constants.hpp
 	)
 
 #	--------------- CLIENT_LINKING ---------------

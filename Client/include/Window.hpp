@@ -9,9 +9,12 @@
 	#define WINDOW_HPP_
 
     #include <string>
+    #include <utility>
     #include <SFML/Graphics.hpp>
+    #include <SFML/Network.hpp>
     #include "Image.hpp"
     #include "Button.hpp"
+    #include "Constants/constants.hpp"
 
     //to adjust
     #define MENU_DEFAULT_WIDTH 1200
@@ -42,8 +45,9 @@ namespace Menu {
             private:
                 void Display();
                 void Events();
-                void GameEvents();
-                void GameDisplay();
+                bool ConnectToServer();
+                std::string FormatTCPData(Constants::TcpActions action, std::string &payload);
+                bool ProcessRes(std::size_t bytesRecived, char *res);
             
                 sf::RenderWindow window;
                 Image background;
