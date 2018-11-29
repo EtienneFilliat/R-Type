@@ -5,7 +5,7 @@
 ** Created by hexa,
 */
 
-#include "Network/AStreamBuffer.hpp"
+#include "Server/include/Network/StreamBuffer/AStreamBuffer.hpp"
 
 AStreamBuffer::AStreamBuffer()
 	: _oStream(&_streamBuffer), _iStream(&_streamBuffer)

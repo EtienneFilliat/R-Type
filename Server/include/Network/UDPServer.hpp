@@ -10,6 +10,8 @@
 
 #include <boost/asio.hpp>
 #include "AServer.hpp"
+#include "StreamBuffer/UDPServerStreamBuffer.hpp"
+#include "StreamBuffer/UDPClientStreamBuffer.hpp"
 
 class UDPServer : public AServer {
 public:
@@ -19,11 +21,11 @@ public:
 private:
 	boost::asio::ip::udp::socket _socket;
 	boost::asio::ip::udp::endpoint _endpoint;
-	std::array<char, 1024> _buffer;
+	UDPServerStreamBuffer _serverStreamBuffer;
+	UDPClientStreamBuffer _clientStreamBuffer;
 
 	void read();
-	void routine(std::string,
-		const boost::system::error_code &);
+	void routine(const boost::system::error_code &);
 };
 
 #endif //R_TYPE_SERVER_UDPSERVER_HPP

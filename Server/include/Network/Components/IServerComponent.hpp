@@ -9,13 +9,15 @@
 #define R_TYPE_SERVER_ICOMPONENTS_HPP
 
 #include <boost/asio.hpp>
+#include "Network/StreamBuffer/TCPStreamBuffer.hpp"
+#include "Network/StreamBuffer/UDPClientStreamBuffer.hpp"
 
 class IServerComponent {
 public:
 	virtual ~IServerComponent() = default;
-	virtual bool run(boost::asio::ip::tcp::socket &, std::string) const = 0;
-	virtual bool run(boost::asio::ip::udp::socket &, boost::asio::ip::udp::endpoint, std::string) const = 0;
-	virtual const std::string &getCommand() const noexcept = 0;
+	virtual bool run(boost::asio::ip::tcp::socket &, struct TCPStreamBufferData &) const = 0;
+	virtual bool run(boost::asio::ip::udp::socket &, boost::asio::ip::udp::endpoint, struct UDPClientStreamBufferData &) const = 0;
+	virtual int getCommand() const noexcept = 0;
 };
 
 #endif //R_TYPE_SERVER_ICOMPONENTS_HPP

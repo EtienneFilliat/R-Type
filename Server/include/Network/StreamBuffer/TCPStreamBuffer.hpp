@@ -20,6 +20,7 @@ class TCPStreamBuffer : public AStreamBuffer {
 public:
 	TCPStreamBuffer();
 	~TCPStreamBuffer() final = default;
+	void write(int action, int bodySize, const std::string &body);
 	struct TCPStreamBufferData read();
 };
 

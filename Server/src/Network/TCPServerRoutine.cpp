@@ -9,7 +9,7 @@
 #include "Network/TCPServerRoutine.hpp"
 
 TCPServerRoutine::TCPServerRoutine(boost::asio::io_service &ioService,
-	std::map<const std::string, std::unique_ptr<IServerComponent>> &components)
+	std::map<int, std::unique_ptr<IServerComponent>> &components)
 	: _socket(ioService), _components(components)
 {}
 
@@ -26,20 +26,19 @@ void TCPServerRoutine::start()
 
 void TCPServerRoutine::read()
 {
-	boost::asio::async_read(_socket, boost::asio::buffer(_buffer),
+	boost::asio::async_read(_socket, _streamBuffer.getStreamBuffer(),
 		boost::asio::transfer_at_least(1),
-		std::bind(&TCPServerRoutine::routine, shared_from_this(),
-			_buffer.data(), std::placeholders::_1));
-	_buffer.fill(0);
+		std::bind(&TCPServerRoutine::routine, shared_from_this(), std::placeholders::_1));
 }
 
-void TCPServerRoutine::routine(std::string data,
-	const boost::system::error_code &error)
+void TCPServerRoutine::routine(const boost::system::error_code &error)
 {
+	struct TCPStreamBufferData data;
+
 	if (!error) {
-		std::string cmd = data.substr(0, data.find('='));
-		if (_components.find(cmd) != _components.end())
-			(*(_components.find(cmd))->second).run(_socket, data);
+		data = _streamBuffer.read();
+		if (_components.find(data.action) != _components.end())
+			(*(_components.find(data.action))->second).run(_socket, data);
 		this->read();
 	} else {
 		_socket.close();

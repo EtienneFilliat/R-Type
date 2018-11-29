@@ -16,7 +16,7 @@ public:
 	void addComponent(std::unique_ptr<IServerComponent> &);
 
 protected:
-	std::map<const std::string, std::unique_ptr<IServerComponent>> _components;
+	std::map<int, std::unique_ptr<IServerComponent>> _components;
 };
 
 #endif //R_TYPE_SERVER_ASERVER_HPP

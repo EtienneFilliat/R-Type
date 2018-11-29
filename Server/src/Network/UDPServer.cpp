@@ -16,19 +16,21 @@ UDPServer::UDPServer(boost::asio::io_service &ioService, unsigned short port)
 
 void UDPServer::read()
 {
-	_socket.async_receive_from(boost::asio::buffer(_buffer), _endpoint,
-		std::bind(&UDPServer::routine, this, _buffer.data(), std::placeholders::_1));
-	_buffer.fill(0);
+	_socket.async_receive_from(_clientStreamBuffer.getStreamBuffer().prepare(512), _endpoint,
+		std::bind(&UDPServer::routine, this, std::placeholders::_1));
 }
 
-void UDPServer::routine(std::string data,
-	const boost::system::error_code &error)
+void UDPServer::routine(const boost::system::error_code &error)
 {
+	struct UDPClientStreamBufferData data;
+
+	std::cout << "Data Received ..." << std::endl;
+	//_clientStreamBuffer.getStreamBuffer().commit(512);
 	if (!error) {
-		std::string cmd = data.substr(0, data.find('='));
-		if (_components.find(cmd) != _components.end())
-			(*(_components.find(cmd))->second).run(_socket,
-				_endpoint, data);
+		data = _clientStreamBuffer.read();
+		std::cout << data.event << std::endl;
+		if (_components.find(data.event) != _components.end())
+			(*(_components.find(data.event))->second).run(_socket, _endpoint, data);
 		this->read();
 	} else {
 		_socket.close();
