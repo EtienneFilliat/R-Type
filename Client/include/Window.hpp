@@ -14,13 +14,15 @@
     #include <SFML/Network.hpp>
     #include "Image.hpp"
     #include "Button.hpp"
+    #include "TextField.hpp"
     #include "Constants/constants.hpp"
 
     //to adjust
     #define MENU_DEFAULT_WIDTH 1200
     #define MENU_DEFAULT_HEIGHT 859
 
-    #define MENU_TITLE "R-Type"
+    #define MENU_TITLE  "R-Type"
+    #define FONT_PATH   "Client/res/Roboto-Bold.ttf"
     #define MENU_DEFAULT_BG "Client/res/background.jpg"
     #define MENU_BG_WIDTH 1200
     #define MENU_BG_HEIGHT 859
@@ -36,6 +38,9 @@
     #define JOINGAME_PX 500
     #define JOINGAME_PY 700
 
+    #define IP_IMG_PATH "Client/res/ip.png"
+    #define PORT_IMG_PATH "Client/res/port.png"
+
 namespace Menu {
 
     class Window {
@@ -45,7 +50,7 @@ namespace Menu {
             private:
                 void Display();
                 void Events();
-                bool ConnectToServer();
+                bool ConnectToServer(const std::string &ip, const std::string &port);
                 std::string FormatTCPData(Constants::TcpActions action, std::string &payload);
                 bool ProcessRes(std::size_t bytesRecived, char *res);
             
@@ -53,6 +58,10 @@ namespace Menu {
                 Image background;
                 Button joingameBtn;
                 bool inGame;
+                bool isIp;
+                TextField ipTextField;
+                TextField portTextField;
+                sf::Font font;
     };
 
 }

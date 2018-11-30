@@ -18,7 +18,8 @@ class Image {
 		inline void set_path(std::string &_path) { path = _path; }
 		inline sf::Sprite &get_sprite() { return sprite; }
 		inline void setPos(int posX = 0, int posY = 0) { sprite.setPosition(posX, posY); };
-
+		void toggleFocus(bool focus);
+		
 	private:
 		std::string path;
 		sf::Texture texture;

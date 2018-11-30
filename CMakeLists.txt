@@ -16,12 +16,14 @@ set(SRC_CLIENT Client/src/main.cpp
 	Client/src/Button.cpp
 	Client/src/Window.cpp
 	Client/src/Game.cpp
+	Client/src/TextField.cpp
 	)
 
 set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Button.hpp
 		Client/include/Image.hpp
 		Client/include/Game.hpp
+		Client/include/TextField.hpp
 		Client/include/Constants/constants.hpp
 	)
 

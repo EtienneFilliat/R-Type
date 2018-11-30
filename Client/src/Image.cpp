@@ -15,3 +15,11 @@ Image::Image(std::string _path, float posX, float posY)
 	sprite.setTexture(texture);
 	sprite.setPosition(posX, posY);
 }
+
+void Image::toggleFocus(bool focus)
+{
+	if (focus)
+		sprite.setColor(sf::Color(204, 153, 55));
+	else
+		sprite.setColor(sf::Color(255, 255, 255));
+}
