@@ -61,6 +61,7 @@ namespace Menu {
                 bool isIp;
                 TextField ipTextField;
                 TextField portTextField;
+                std::string _ip;
                 sf::Font font;
     };
 

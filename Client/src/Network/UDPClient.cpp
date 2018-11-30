@@ -8,8 +8,9 @@
 #include <iostream>
 #include "Network/UDPClient.hpp"
 
-UDPClient::UDPClient(boost::asio::io_service &ioService, unsigned short port)
-	: _socket(ioService, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port))
+UDPClient::UDPClient(boost::asio::io_service &ioService, unsigned short port, const std::function<void(struct UDPServerStreamBufferData)> &cllbk)
+	: _socket(ioService, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port)),
+	_pushToQueue(cllbk)
 {
 	this->read();
 }
@@ -34,6 +35,7 @@ void UDPClient::routine(const boost::system::error_code &error, std::size_t size
 	std::cout << "Data Received (" << size << ")" << std::endl;
 	if (!error) {
 		data = _serverStreamBuffer.read(size);
+		_pushToQueue(data);
 		std::cout << data.spriteX << " - " << data.spriteY << std::endl;
 		this->read();
 	} else {

@@ -9,6 +9,8 @@
 #include <cstring>
 #include <string.h>
 #include <string>
+#include <boost/asio.hpp>
+#include "IoServiceWork.hpp"
 #include "Window.hpp"
 #include "Game.hpp"
 
@@ -20,7 +22,8 @@ Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
 	inGame(false),
 	isIp(false),
 	ipTextField(IP_IMG_PATH),
-	portTextField(PORT_IMG_PATH)
+	portTextField(PORT_IMG_PATH),
+	_ip("")
 {
 	if (!font.loadFromFile(FONT_PATH))
 		std::cout << "Failed to load font" << std::endl;
@@ -62,9 +65,9 @@ void Menu::Window::Events()
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 			sf::Vector2i mousePos = sf::Mouse::getPosition(window);                                                           
         	sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-			if (joingameBtn.IsPressed(mousePosF) &&
-				!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty())
-				inGame = ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
+			if (joingameBtn.IsPressed(mousePosF)) //&&
+				//!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty())
+				inGame = true; //= ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
 			if (ipTextField.isSelected(mousePosF) && !isIp)
 				isIp = true;
 			if (portTextField.isSelected(mousePosF) && isIp)
@@ -95,6 +98,7 @@ bool Menu::Window::ConnectToServer(const std::string &ip, const std::string &por
 	sf::Socket::Status status = socket.connect(ip, port);
 	if (status != sf::Socket::Done)
 		return false;
+	_ip = ip;
 	std::string req = FormatTCPData(Constants::TcpActions::CONNECT, playerName);
 	if (socket.send(req.c_str(), req.size()) != sf::Socket::Done)
 		return false;
@@ -128,15 +132,16 @@ void Menu::Window::Display()
 
 void Menu::Window::Loop()
 {
-	Game game(window);
+	//boost::asio::io_service ios;
+	IoServiceWork s;
 
 	while (window.isOpen()) {
 		if (!inGame) {
 			Events();
 			Display();
 		} else {
-			game.GameEvents();
-			game.GameDisplay();
+			Game game(window, "127.0.0.1", s.ioService()); //_ip
+			game.run();
 		}
 	}
 }

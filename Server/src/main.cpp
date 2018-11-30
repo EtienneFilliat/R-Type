@@ -22,6 +22,7 @@ int main(int ac, char **av)
 
 	server.addComponent(move);
 	server.send({1, 1, 1, 1, 1, 1, 1}, endpoint);
+	server.send({1, 1, 1, 1, 1, 1, 1}, endpoint);
 	ioService.run();
 	return 0;
 }

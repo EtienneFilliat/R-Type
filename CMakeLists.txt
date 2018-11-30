@@ -12,11 +12,15 @@ set(CLIENT_INCLUDE_PATH "Client/include")
 #	------------- CLIENT_RESSOURCES --------------
 
 set(SRC_CLIENT Client/src/main.cpp
-	Client/src/Image.cpp
-	Client/src/Button.cpp
-	Client/src/Window.cpp
-	Client/src/Game.cpp
-	Client/src/TextField.cpp
+		Client/src/Image.cpp
+		Client/src/Button.cpp
+		Client/src/Window.cpp
+		Client/src/Game.cpp
+		Client/src/TextField.cpp
+		Client/src/Network/UDPClient.cpp
+		Client/src/Network/StreamBuffer/AStreamBuffer.cpp
+		Client/src/Network/StreamBuffer/UDPClientStreamBuffer.cpp
+		Client/src/Network/StreamBuffer/UDPServerStreamBuffer.cpp
 	)
 
 set(HPP_CLIENT Client/include/Window.hpp
@@ -25,6 +29,11 @@ set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Game.hpp
 		Client/include/TextField.hpp
 		Client/include/Constants/constants.hpp
+		Client/include/Network/UDPClient.hpp
+		Client/include/Network/StreamBuffer/AStreamBuffer.hpp
+		Client/include/Network/StreamBuffer/UDPClientStreamBuffer.hpp
+		Client/include/Network/StreamBuffer/UDPServerStreamBuffer.hpp
+		Client/include/IoServiceWork.hpp
 	)
 
 #	--------------- CLIENT_LINKING ---------------
