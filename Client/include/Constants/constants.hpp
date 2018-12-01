@@ -22,6 +22,20 @@ namespace Constants {
         READY,
         START
     };
+
+    enum EVENT {
+        MOVE,
+        SHOOT,
+        QUIT,    
+    };
+
+    enum DIRECTION {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    };
+
     const std::size_t MaxPayloadSize = 1024;
 }
 

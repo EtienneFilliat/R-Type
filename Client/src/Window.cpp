@@ -140,7 +140,7 @@ void Menu::Window::Loop()
 			Events();
 			Display();
 		} else {
-			Game game(window, "127.0.0.1", s.ioService()); //_ip
+			Game game(window, "127.0.0.1", s.ioService(), "PlayerName"); //_ip
 			game.run();
 		}
 	}

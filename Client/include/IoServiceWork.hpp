@@ -21,7 +21,7 @@ class IoServiceWork {
 		~IoServiceWork()
         {
             delete m_ioServiceWork;
-            m_ioWorkThread->join();
+            m_ioWorkThread->interrupt();
             delete m_ioWorkThread;
             delete m_ioService;
         }

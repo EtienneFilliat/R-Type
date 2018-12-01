@@ -18,7 +18,9 @@ UDPClient::UDPClient(boost::asio::io_service &ioService, unsigned short port, co
 void UDPClient::send(struct UDPClientStreamBufferData data, boost::asio::ip::udp::endpoint endpoint)
 {
 	_clientStreamBuffer.write(data);
+	std::cout << "Buff Size : " << _clientStreamBuffer.getStreamBuffer().size() << std::endl;
 	_socket.send_to(_clientStreamBuffer.getStreamBuffer().data(), endpoint);
+	_clientStreamBuffer.getStreamBuffer().consume(1024);
 }
 
 void UDPClient::read()
