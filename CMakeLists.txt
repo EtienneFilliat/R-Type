@@ -55,6 +55,17 @@ set(SRC_SERVER Server/src/main.cpp
 		Server/src/Ecs/Components/Acceleration.cpp
 		Server/src/Ecs/Components/Damages.cpp
 		Server/src/Ecs/Components/HitBox.cpp
+		Server/src/Network/AServer.cpp
+		Server/src/Network/TCPServer.cpp
+		Server/src/Network/TCPServerRoutine.cpp
+		Server/src/Network/UDPServer.cpp
+		Server/src/Network/Components/AServerComponent.cpp
+		Server/src/Network/Components/ConnectComponent.cpp
+		Server/src/Network/Components/MoveComponent.cpp
+		Server/src/Network/StreamBuffer/AStreamBuffer.cpp
+		Server/src/Network/StreamBuffer/TCPStreamBuffer.cpp
+		Server/src/Network/StreamBuffer/UDPServerStreamBuffer.cpp
+		Server/src/Network/StreamBuffer/UDPClientStreamBuffer.cpp
 	)
 
 set(HPP_SERVER Server/include/Constants.hpp
@@ -73,6 +84,24 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/Components/HitBox.hpp
 		Server/include/Components/AI.hpp
 		Server/include/Components/Weapon.hpp
+		Server/include/Network/AServer.hpp
+		Server/include/Network/TCPServer.hpp
+		Server/include/Network/TCPServerRoutine.hpp
+		Server/include/Network/UDPServer.hpp
+		Server/include/Network/Components/IServerComponent.hpp
+		Server/include/Network/Components/AServerComponent.hpp
+		Server/include/Network/Components/ConnectComponent.hpp
+		Server/include/Network/Components/MoveComponent.hpp
+		Server/include/Network/Components/ConnectComponent.hpp
+		Server/include/Network/Components/Actions.hpp
+		Server/include/Network/Components/Directions.hpp
+		Server/include/Network/Components/Events.hpp
+		Server/include/Network/DataStruct/Lobby.hpp
+		Server/include/Network/DataStruct/Player.hpp
+		Server/include/Network/StreamBuffer/AStreamBuffer.hpp
+		Server/include/Network/StreamBuffer/TCPStreamBuffer.hpp
+		Server/include/Network/StreamBuffer/UDPServerStreamBuffer.hpp
+		Server/include/Network/StreamBuffer/UDPClientStreamBuffer.hpp
 	)
 
 #	--------------- SERVER_LINKING ---------------
