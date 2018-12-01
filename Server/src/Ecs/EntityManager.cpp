@@ -15,6 +15,7 @@
 #include "Components/Weapon.hpp"
 #include "Components/Acceleration.hpp"
 #include "Components/AI.hpp"
+#include "Components/Drawable.hpp"
 #include "Constants.hpp"
 #include "EntityManager.hpp"
 
@@ -30,12 +31,26 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 	std::shared_ptr<Entity> playerEntity(new Entity(id));
 
 	// Create Player Components
-	std::shared_ptr<Acceleration> accComponent(new Acceleration(Constants::DefaultPlayerAccel));
-	std::shared_ptr<Health> healthComponent(new Health(Constants::DefaultPlayerHealth));
-	std::shared_ptr<Damages> damagesComponent(new Damages(Constants::DefaultPlayerDamages));
-	std::shared_ptr<Position> posComponent(new Position(Constants::DefaultPlayerPosX, Constants::DefaultPlayerPosY));
+	std::shared_ptr<Drawable> drawComponent(
+		new Drawable(Constants::DefaultPlayerSpriteSheetIndex,
+		std::make_pair(Constants::DefaultPlayerSpriteOffsetX,
+		Constants::DefaultPlayerSpriteOffsetY),
+		std::make_pair(Constants::DefaultPlayerSpriteSizeX,
+		Constants::DefaultPlayerSpriteSizeY)));
+	std::shared_ptr<Acceleration> accComponent(
+		new Acceleration(Constants::DefaultPlayerAccel));
+	std::shared_ptr<Health> healthComponent(
+		new Health(Constants::DefaultPlayerHealth));
+	std::shared_ptr<Damages> damagesComponent(
+		new Damages(Constants::DefaultPlayerDamages));
+	std::shared_ptr<Position> posComponent(
+		new Position(Constants::DefaultPlayerPosX,
+		Constants::DefaultPlayerPosY));
 	std::shared_ptr<Weapon> weaponComponent(new Weapon());
-	std::shared_ptr<HitBox> hitboxComponent(new HitBox(Constants::DefaultHitboxSizeX, Constants::DefaultHitboxSizeX));
+	std::shared_ptr<HitBox> hitboxComponent(
+		new HitBox(Constants::DefaultPlayerHitboxSizeX,
+		Constants::DefaultPlayerHitboxSizeX));
+
 	// Add Player Compoenent to the Entity
 	playerEntity.get()->addComp<Acceleration>(accComponent);
 	playerEntity.get()->addComp<Health>(healthComponent);
@@ -55,11 +70,24 @@ unsigned int Ecs::EntityManager::createMonster() noexcept
 	unsigned int id = _entityList.size() + 1;
 	std::shared_ptr<Entity> monsterEntity(new Entity(id));
 
-	std::shared_ptr<Acceleration> accComponent(new Acceleration(Constants::DefaultMonsterAccel));
-	std::shared_ptr<Health> healthComponent(new Health(Constants::DefaultMonsterHealth));
-	std::shared_ptr<Damages> damagesComponent(new Damages(Constants::DefaultMonsterDamages));
-	std::shared_ptr<Position> posComponent(new Position(Constants::DefaultMonsterPosX, Constants::DefaultMonsterPosY));
-	std::shared_ptr<HitBox> hitboxComponent(new HitBox(Constants::DefaultHitboxSizeX, Constants::DefaultHitboxSizeX));
+	std::shared_ptr<Drawable> drawComponent(
+		new Drawable(Constants::DefaultMonsterSpriteSheetIndex,
+		std::make_pair(Constants::DefaultMonsterSpriteOffsetX,
+		Constants::DefaultMonsterSpriteOffsetY),
+		std::make_pair(Constants::DefaultMonsterSpriteSizeX,
+		Constants::DefaultMonsterSpriteSizeY)));
+	std::shared_ptr<Acceleration> accComponent(
+		new Acceleration(Constants::DefaultMonsterAccel));
+	std::shared_ptr<Health> healthComponent(
+		new Health(Constants::DefaultMonsterHealth));
+	std::shared_ptr<Damages> damagesComponent(
+		new Damages(Constants::DefaultMonsterDamages));
+	std::shared_ptr<Position> posComponent(
+		new Position(Constants::DefaultMonsterPosX,
+		Constants::DefaultMonsterPosY));
+	std::shared_ptr<HitBox> hitboxComponent(
+		new HitBox(Constants::DefaultMonsterHitboxSizeX,
+		Constants::DefaultMonsterHitboxSizeX));
 	std::shared_ptr<AI> aiComponent(new AI(random));
 
 	monsterEntity.get()->addComp<Acceleration>(accComponent);

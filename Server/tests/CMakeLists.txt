@@ -11,11 +11,13 @@ set(SRC
 	../src/Ecs/Entity.cpp
 	../src/Ecs/EntityManager.cpp
 	../src/Ecs/HitboxSystem.cpp
+	../src/Ecs/FrameSendingSystem.cpp
 	../src/Ecs/Components/Health.cpp
 	../src/Ecs/Components/Position.cpp
 	../src/Ecs/Components/Acceleration.cpp
 	../src/Ecs/Components/Damages.cpp
 	../src/Ecs/Components/HitBox.cpp
+	../src/Ecs/Components/Drawable.cpp
 )
 
 set(HEAD
@@ -25,6 +27,7 @@ set(HEAD
 	../include/ISystem.hpp
 	../include/ASystem.hpp
 	../include/HitboxSystem.hpp
+	../include/FrameSendingSystem.hpp
 	../include/AISystem.hpp
 	../include/Components/IComponent.hpp
 	../include/Components/AComponent.hpp
@@ -35,6 +38,7 @@ set(HEAD
 	../include/Components/HitBox.hpp
 	../include/Components/AI.hpp
 	../include/Components/Weapon.hpp
+	../include/Components/Drawable.hpp
 )
 
 set(TESTS
