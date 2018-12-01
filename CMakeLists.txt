@@ -56,6 +56,7 @@ set(SRC_SERVER Server/src/main.cpp
 		Server/src/Ecs/Components/Acceleration.cpp
 		Server/src/Ecs/Components/Damages.cpp
 		Server/src/Ecs/Components/HitBox.cpp
+		Server/src/Ecs/Components/Drawable.cpp
 		Server/src/Network/AServer.cpp
 		Server/src/Network/TCPServer.cpp
 		Server/src/Network/TCPServerRoutine.cpp
@@ -86,6 +87,7 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/Components/HitBox.hpp
 		Server/include/Components/AI.hpp
 		Server/include/Components/Weapon.hpp
+		Server/include/Components/Drawable.hpp
 		Server/include/Network/AServer.hpp
 		Server/include/Network/TCPServer.hpp
 		Server/include/Network/TCPServerRoutine.hpp

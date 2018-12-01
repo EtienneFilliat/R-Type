@@ -15,6 +15,7 @@ namespace Constants
 	enum Comps
 	{
 		HEALTH,
+		DRAWABLE,
 		HITBOX,
 		POSITION,
 		DAMAGES,
