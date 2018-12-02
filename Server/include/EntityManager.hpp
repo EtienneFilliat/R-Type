@@ -28,6 +28,7 @@ namespace Ecs {
 		unsigned int addEntity(Entity &entity) noexcept;
 		std::shared_ptr<Entity> getEntityById(unsigned int id);
 		bool deleteEntity(unsigned int id) noexcept;
+		static int random(const int min, const int max) noexcept;
 		template <class T>
 		std::list<std::shared_ptr<Entity>> getEntsByComp()
 		{
