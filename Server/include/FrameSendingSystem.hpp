@@ -18,6 +18,7 @@ namespace Ecs {
 				std::list<std::shared_ptr<Entity>> &entities);
 			void run() final;
 		private:
+			void drawThisEntity(std::shared_ptr<Entity> entity);
 	};
 
 }
