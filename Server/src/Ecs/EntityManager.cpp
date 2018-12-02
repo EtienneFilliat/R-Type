@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <ctime>
+#include <random>
 #include "Components/Health.hpp"
 #include "Components/Position.hpp"
 #include "Components/Damages.hpp"
@@ -21,11 +22,19 @@
 
 Ecs::EntityManager::EntityManager()
 {
-	std::srand(std::time(nullptr));
 }
 
 Ecs::EntityManager::~EntityManager()
 {}
+
+int Ecs::EntityManager::random(int min, int max) noexcept
+{
+  std::mt19937 generator;
+  generator.seed(std::random_device()());
+  std::uniform_int_distribution<std::mt19937::result_type> dist(min, max);
+
+  return (static_cast<int>(dist(generator)));
+}
 
 unsigned int Ecs::EntityManager::createPlayer() noexcept
 {
@@ -66,8 +75,8 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 std::shared_ptr<Ecs::Entity> Ecs::EntityManager::createMonster(
 	int entitySize) noexcept
 {
-	int randomAI = 1 + std::rand() % 2;
-	int randomY = 1 + std::rand() % 800;
+	int randomAI = random(1, 2);
+	int randomY = random(1, 800);
 
 	unsigned int id = entitySize + 1;
 	std::shared_ptr<Entity> monsterEntity(new Entity(id));

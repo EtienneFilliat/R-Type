@@ -23,7 +23,8 @@ Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
 	isIp(false),
 	ipTextField(IP_IMG_PATH),
 	portTextField(PORT_IMG_PATH),
-	_ip("")
+	_ip(""),
+	_music("Client/res/interstellar.ogg")
 {
 	if (!font.loadFromFile(FONT_PATH))
 		std::cout << "Failed to load font" << std::endl;
@@ -35,6 +36,8 @@ Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
 		portTextField.setPos(800, 670);
 		portTextField.setMaxCharacters(5);
 	}
+	_music.isRepeatable(true);
+	_music.play();
 	background.get_sprite().scale(sf::Vector2f(static_cast<float>(mode.width) / static_cast<float>(MENU_BG_WIDTH), static_cast<float>(mode.height) / static_cast<float>(MENU_BG_HEIGHT)));
 }
 
@@ -65,9 +68,11 @@ void Menu::Window::Events()
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 			sf::Vector2i mousePos = sf::Mouse::getPosition(window);                                                           
         	sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-			if (joingameBtn.IsPressed(mousePosF)) //&&
-				//!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty())
-				inGame = true; //= ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
+			if (joingameBtn.IsPressed(mousePosF) &&
+				!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty()) {
+					_ip = ipTextField.getData().toAnsiString();
+					inGame = true; //= ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
+				}
 			if (ipTextField.isSelected(mousePosF) && !isIp)
 				isIp = true;
 			if (portTextField.isSelected(mousePosF) && isIp)
@@ -114,8 +119,8 @@ std::string Menu::Window::FormatTCPData(Constants::TcpActions action, std::strin
 {
 	std::string packet;
 	packet += static_cast<char>(action);
-	packet += static_cast<char>(payload.size());
 	packet += payload;
+	packet += static_cast<char>(payload.size());
 	return packet;
 }
 
@@ -132,7 +137,6 @@ void Menu::Window::Display()
 
 void Menu::Window::Loop()
 {
-	//boost::asio::io_service ios;
 	IoServiceWork s;
 
 	while (window.isOpen()) {
@@ -140,8 +144,9 @@ void Menu::Window::Loop()
 			Events();
 			Display();
 		} else {
-			Game game(window, "127.0.0.1", s.ioService(), "PlayerName"); //_ip
+			Game game(window, _ip, s.ioService(), "PlayerName"); //_ip
 			game.run();
 		}
 	}
+	_music.stop();
 }
