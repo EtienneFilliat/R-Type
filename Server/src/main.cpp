@@ -11,7 +11,7 @@
 #include "IoServiceWork.hpp"
 #include "Components/Position.hpp"
 
-int main(int ac, char **av)
+int main()
 {
 	Ecs::EntityManager entityManager;
 	entityManager.createPlayer();
