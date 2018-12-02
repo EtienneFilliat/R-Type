@@ -14,6 +14,7 @@
 class GameLoop {
 	public:
 		GameLoop(std::list<std::shared_ptr<Ecs::Entity>> list);
+		void run();
 
 	private:
 		Ecs::HitboxSystem	_hitboxSystem;

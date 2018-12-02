@@ -13,3 +13,9 @@ GameLoop::GameLoop(std::list<std::shared_ptr<Ecs::Entity>> list)
 	_AISystem(list)
 {}
 
+void GameLoop::run()
+{
+	_AISystem.run();
+	_hitboxSystem.run();
+	_frameSendingSystem.run();
+}
