@@ -47,10 +47,12 @@ set(SERVER_INCLUDE_PATH "Server/include")
 #	------------- SERVER_RESSOURCES --------------
 
 set(SRC_SERVER Server/src/main.cpp
+		Server/src/GameLoop.cpp
 		Server/src/Ecs/Entity.cpp
 		Server/src/Ecs/EntityManager.cpp
 		Server/src/Ecs/HitboxSystem.cpp
 		Server/src/Ecs/FrameSendingSystem.cpp
+		Server/src/Ecs/AISystem.cpp
 		Server/src/Ecs/Components/Health.cpp
 		Server/src/Ecs/Components/Position.cpp
 		Server/src/Ecs/Components/Acceleration.cpp
@@ -71,12 +73,14 @@ set(SRC_SERVER Server/src/main.cpp
 	)
 
 set(HPP_SERVER Server/include/Constants.hpp
+		Server/include/GameLoop.hpp
 		Server/include/Entity.hpp
 		Server/include/EntityManager.hpp
 		Server/include/ISystem.hpp
 		Server/include/ASystem.hpp
 		Server/include/HitboxSystem.hpp
 		Server/include/FrameSendingSystem.hpp
+		Server/include/AISystem.hpp
 		Server/include/AISystem.hpp
 		Server/include/Components/IComponent.hpp
 		Server/include/Components/AComponent.hpp
