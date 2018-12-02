@@ -11,7 +11,6 @@ set(SRC
 	../src/Ecs/Entity.cpp
 	../src/Ecs/EntityManager.cpp
 	../src/Ecs/HitboxSystem.cpp
-	../src/Ecs/FrameSendingSystem.cpp
 	../src/Ecs/Components/Health.cpp
 	../src/Ecs/Components/Position.cpp
 	../src/Ecs/Components/Acceleration.cpp
@@ -27,7 +26,6 @@ set(HEAD
 	../include/ISystem.hpp
 	../include/ASystem.hpp
 	../include/HitboxSystem.hpp
-	../include/FrameSendingSystem.hpp
 	../include/AISystem.hpp
 	../include/Components/IComponent.hpp
 	../include/Components/AComponent.hpp

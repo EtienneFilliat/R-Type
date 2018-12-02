@@ -8,7 +8,7 @@
 #ifndef FRAMESENDINGSYSTEM_HPP_
 	#define FRAMESENDINGSYSTEM_HPP_
 	#include "ASystem.hpp"
-
+	#include "Network/UDPServer.hpp"
 
 namespace Ecs {
 
@@ -17,8 +17,12 @@ namespace Ecs {
 			FrameSendingSystem(
 				std::list<std::shared_ptr<Entity>> &entities);
 			void run() final;
+
 		private:
 			void drawThisEntity(std::shared_ptr<Entity> entity);
+			boost::asio::io_service		_ioService;
+			boost::asio::ip::udp::endpoint	_endpoint;
+			UDPServer 			_server;
 	};
 
 }
