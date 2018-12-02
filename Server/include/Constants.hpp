@@ -24,6 +24,19 @@ namespace Constants
 		AI
 	};
 
+	enum EVENT {
+        MOVE,
+        SHOOT,
+        QUIT,    
+    };
+
+    enum DIRECTION {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
+    };
+
 	// Player and Monsters defaults Stats
 	const int DefaultPlayerAccel = 3;
 	const int DefaultPlayerHealth = 200;

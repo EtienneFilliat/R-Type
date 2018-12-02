@@ -99,10 +99,11 @@ void Game::processFrame()
 
 void Game::GameDisplay()
 {
-	_window.clear();
+	if (!_QClass->empty())
+		_window.clear();
     processFrame();
 	_window.display();
-	sleep(1);
+	// sleep(1);
 }
 
 void Game::run()
