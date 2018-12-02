@@ -15,5 +15,6 @@ int main(int ac, char **av)
 	entityManager.createPlayer();
 	entityManager.createMonster();
 	GameLoop gameLoop(entityManager.getEntsByComp<Ecs::Position>());
+	gameLoop.run();
 	return 0;
 }
