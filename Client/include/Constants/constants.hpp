@@ -45,6 +45,8 @@ namespace Constants {
     };
 
     const std::size_t MaxPayloadSize = 1024;
+    const int WindowHeight = 859;
+    const int WindowWidth = 1200;
 }
 
 #endif /* !CONSTANTS_HPP_ */

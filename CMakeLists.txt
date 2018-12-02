@@ -16,7 +16,10 @@ set(SRC_CLIENT Client/src/main.cpp
 		Client/src/Button.cpp
 		Client/src/Window.cpp
 		Client/src/Game.cpp
+		Client/src/Timer.cpp
 		Client/src/TextField.cpp
+		Client/src/Background.cpp
+		Client/src/Paralax.cpp
 		Client/src/Network/UDPClient.cpp
 		Client/src/Network/StreamBuffer/AStreamBuffer.cpp
 		Client/src/Network/StreamBuffer/UDPClientStreamBuffer.cpp
@@ -28,6 +31,9 @@ set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Image.hpp
 		Client/include/Game.hpp
 		Client/include/TextField.hpp
+		Client/include/Timer.hpp
+		Client/include/Background.hpp
+		Client/include/Paralax.hpp
 		Client/include/Constants/constants.hpp
 		Client/include/Network/UDPClient.hpp
 		Client/include/Network/StreamBuffer/AStreamBuffer.hpp
@@ -62,11 +68,14 @@ set(SERVER_INCLUDE_PATH "Server/include")
 
 set(SRC_SERVER Server/src/main.cpp
 		Server/src/GameLoop.cpp
+		Server/src/Timer.cpp
 		Server/src/Ecs/Entity.cpp
 		Server/src/Ecs/EntityManager.cpp
 		Server/src/Ecs/HitboxSystem.cpp
 		Server/src/Ecs/FrameSendingSystem.cpp
 		Server/src/Ecs/AISystem.cpp
+		Server/src/Ecs/PlayerSystem.cpp
+		Server/src/Ecs/WeaponSystem.cpp
 		Server/src/Ecs/Components/Health.cpp
 		Server/src/Ecs/Components/Position.cpp
 		Server/src/Ecs/Components/Acceleration.cpp
@@ -95,8 +104,11 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/HitboxSystem.hpp
 		Server/include/FrameSendingSystem.hpp
 		Server/include/AISystem.hpp
-		Server/include/AISystem.hpp
+		Server/include/PlayerSystem.hpp
+		Server/include/WeaponSystem.hpp
 		Server/include/IoServiceWork.hpp
+		Server/include/SafeQueue.hpp
+		Server/include/Timer.hpp
 		Server/include/Components/IComponent.hpp
 		Server/include/Components/AComponent.hpp
 		Server/include/Components/Health.hpp
