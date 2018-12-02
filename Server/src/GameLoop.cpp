@@ -7,7 +7,7 @@
 
 #include "GameLoop.hpp"
 
-GameLoop::GameLoop(std::list<std::shared_ptr<Ecs::Entity>> list)
+GameLoop::GameLoop(std::list<std::shared_ptr<Ecs::Entity>> &list)
 	: _hitboxSystem(list),
 	_frameSendingSystem(list),
 	_AISystem(list)

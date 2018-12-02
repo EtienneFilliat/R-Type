@@ -13,7 +13,7 @@
 
 class GameLoop {
 	public:
-		GameLoop(std::list<std::shared_ptr<Ecs::Entity>> list);
+		GameLoop(std::list<std::shared_ptr<Ecs::Entity>> &list);
 		void run();
 
 	private:
