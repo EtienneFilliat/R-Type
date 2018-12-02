@@ -14,13 +14,15 @@
 	#include "Network/UDPClient.hpp"
 	#include "Image.hpp"
 	#include "SafeQueue.hpp"
+	#include "Paralax.hpp"
 	#include "Constants/constants.hpp"
 	#include "Network/StreamBuffer/UDPServerStreamBuffer.hpp"
 	#include "Network/StreamBuffer/UDPClientStreamBuffer.hpp"
 
 	#define PLAYER_SPRITE	"Client/res/spacecraft.png"
-	#define MONSTER1_SPRITE	"Client/res/ovni.png"
-	#define MONSTER2_SPRITE	"Client/res/ufo.png"
+	#define MONSTER1_SPRITE	"Client/res/monster1.png"
+	#define MONSTER2_SPRITE	"Client/res/monster2.png"
+	#define MISSILE_SPRITE	"Client/res/attack.png"
 	#define SPRITE_SIZE		64
 	#define STD_SERV_UPD_PORT	1488
 	#define STD_CLI_UPD_PORT	1234
@@ -35,7 +37,7 @@
 			bool GameEvents();
 			void GameDisplay();
 			void CheckPlayerInput(sf::Event &event);
-			void sendAction(int event, int dir = 0);
+			void sendAction();
 			void processFrame();
 
 			sf::RenderWindow &_window;
@@ -43,10 +45,13 @@
 			Image *_player;
 			Image *_monster1;
 			Image *_monster2;
+			Image *_missile;
 			std::string _playerName;
 			std::shared_ptr<SafeQueue<struct UDPServerStreamBufferData>> _QClass;
 			boost::asio::ip::udp::endpoint _endpoint;
 			UDPClient *_client;
+			Paralax _paralax;
+			std::queue<struct UDPClientStreamBufferData> _actions;
 	};
 
 #endif /* !GAME_HPP_ */

@@ -19,11 +19,19 @@ Ecs::HitboxSystem::HitboxSystem(std::list<std::shared_ptr<Entity>> &entities)
 
 void Ecs::HitboxSystem::run()
 {
+	std::shared_ptr<Entity> toRemove;
+	bool removeAnEntity = false;
+
 	for (auto &entity : _Entities) {
-		if (entity.get()->hasComps<HitBox, Position, Health>()) {
+		if (entity.get()->hasComps<HitBox, Position, Health>())
 			selectHitType(entity);
+		if (entity.get()->getComp<Health>()->getHp() < 1) {
+			toRemove = entity;
+			removeAnEntity = true;
 		}
 	}
+	if (removeAnEntity)
+		_Entities.remove(toRemove);
 }
 
 void Ecs::HitboxSystem::selectHitType(std::shared_ptr<Entity> entity)
@@ -62,7 +70,7 @@ void Ecs::HitboxSystem::checkForDamages(std::shared_ptr<Entity> entity,
 
 	if (entityPos.first + entityHitbox.first > otherPos.first &&
 		entityPos.first < otherPos.first + otherHitbox.first &&
-		entityPos.second + entityHitbox.second > otherHitbox.second &&
+		entityPos.second + entityHitbox.second > otherPos.second &&
 		entityPos.second < otherPos.second + otherHitbox.second) {
 		takeDamages(entity, otherEntity);
 	}

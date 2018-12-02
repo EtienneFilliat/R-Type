@@ -15,7 +15,6 @@ int main()
 {
 	Ecs::EntityManager entityManager;
 	entityManager.createPlayer();
-	entityManager.createMonster();
 	IoServiceWork s;
 	std::list<std::shared_ptr<Ecs::Entity>> entityList =
 		entityManager.getEntsByComp<Ecs::Position>();

@@ -8,8 +8,9 @@
 #include <iostream>
 #include "Network/UDPServer.hpp"
 
-UDPServer::UDPServer(boost::asio::io_service &ioService, unsigned short port)
-	: _socket(ioService, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port))
+UDPServer::UDPServer(boost::asio::io_service &ioService, unsigned short port, std::shared_ptr<SafeQueue<struct UDPClientStreamBufferData>> QClass)
+	: _socket(ioService, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port)),
+	_actionQueue(QClass)
 {
 	this->read();
 }
@@ -32,13 +33,9 @@ void UDPServer::routine(const boost::system::error_code &error, std::size_t size
 {
 	struct UDPClientStreamBufferData data;
 
-	std::cout << "============ NEW EVENT ============\n";
-	std::cout << "Data Received (" << size << ")" << std::endl;
 	if (!error) {
 		data = _clientStreamBuffer.read(size);
-		std::cout << data.playerName << std::endl;
-		std::cout << "Event [" << data.event << "] | Direction [" << data.direction << "]" << std::endl;
-		std::cout << "============ END EVENT ============\n";
+		_actionQueue->push(data);
 		if (_components.find(data.event) != _components.end())
 			(*(_components.find(data.event))->second).run(_socket, _endpoint, data);
 		this->read();
