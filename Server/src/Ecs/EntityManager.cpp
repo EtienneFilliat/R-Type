@@ -52,12 +52,13 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 		Constants::DefaultPlayerHitboxSizeX));
 
 	// Add Player Compoenent to the Entity
-	playerEntity.get()->addComp<Acceleration>(accComponent);
-	playerEntity.get()->addComp<Health>(healthComponent);
-	playerEntity.get()->addComp<Damages>(damagesComponent);
-	playerEntity.get()->addComp<Position>(posComponent);
-	playerEntity.get()->addComp<Weapon>(weaponComponent);
-	playerEntity.get()->addComp<HitBox>(hitboxComponent);
+	playerEntity->addComp<Acceleration>(accComponent);
+	playerEntity->addComp<Health>(healthComponent);
+	playerEntity->addComp<Damages>(damagesComponent);
+	playerEntity->addComp<Position>(posComponent);
+	playerEntity->addComp<Weapon>(weaponComponent);
+	playerEntity->addComp<HitBox>(hitboxComponent);
+	playerEntity->addComp<Drawable>(drawComponent);
 	_entityList.push_back(playerEntity);
 	return id;
 }
@@ -88,14 +89,15 @@ unsigned int Ecs::EntityManager::createMonster() noexcept
 	std::shared_ptr<HitBox> hitboxComponent(
 		new HitBox(Constants::DefaultMonsterHitboxSizeX,
 		Constants::DefaultMonsterHitboxSizeX));
-	std::shared_ptr<AI> aiComponent(new AI(random));
+	std::shared_ptr<AI> aiComponent(new AI(1));
 
-	monsterEntity.get()->addComp<Acceleration>(accComponent);
-	monsterEntity.get()->addComp<Health>(healthComponent);
-	monsterEntity.get()->addComp<Damages>(damagesComponent);
-	monsterEntity.get()->addComp<Position>(posComponent);
-	monsterEntity.get()->addComp<HitBox>(hitboxComponent);
-	monsterEntity.get()->addComp<AI>(aiComponent);
+	monsterEntity->addComp<Acceleration>(accComponent);
+	monsterEntity->addComp<Health>(healthComponent);
+	monsterEntity->addComp<Damages>(damagesComponent);
+	monsterEntity->addComp<Position>(posComponent);
+	monsterEntity->addComp<HitBox>(hitboxComponent);
+	monsterEntity->addComp<AI>(aiComponent);
+	monsterEntity->addComp<Drawable>(drawComponent);
 	_entityList.push_back(monsterEntity);
 	return id;
 }

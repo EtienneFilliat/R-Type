@@ -18,6 +18,7 @@ void UDPServer::send(struct UDPServerStreamBufferData data, boost::asio::ip::udp
 {
 	_serverStreamBuffer.write(data);
 	_socket.send_to(_serverStreamBuffer.getStreamBuffer().data(), endpoint);
+	_serverStreamBuffer.getStreamBuffer().consume(1024);
 }
 
 void UDPServer::read()

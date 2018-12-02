@@ -15,14 +15,15 @@ namespace Ecs {
 	class FrameSendingSystem : public ASystem {
 		public:
 			FrameSendingSystem(
-				std::list<std::shared_ptr<Entity>> &entities);
+				std::list<std::shared_ptr<Entity>> &entities,
+				UDPServer &server,
+				boost::asio::ip::udp::endpoint	_endpoint);
 			void run() final;
 
 		private:
 			void drawThisEntity(std::shared_ptr<Entity> entity);
-			boost::asio::io_service		_ioService;
 			boost::asio::ip::udp::endpoint	_endpoint;
-			UDPServer 			_server;
+			UDPServer &_server;
 	};
 
 }

@@ -5,15 +5,18 @@
 ** frame sending system
 */
 
+#include <iostream>
 #include "FrameSendingSystem.hpp"
 #include "Components/Drawable.hpp"
 #include "Components/Position.hpp"
 
 Ecs::FrameSendingSystem::FrameSendingSystem(
-	std::list<std::shared_ptr<Entity>> &entities)
+	std::list<std::shared_ptr<Entity>> &entities,
+	UDPServer &server,
+	boost::asio::ip::udp::endpoint	_endpoint)
 	: ASystem(entities),
-	_endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 1234),
-	_server(_ioService, 1488)
+	_endpoint(_endpoint),
+	_server(server)
 {
 }
 
@@ -21,8 +24,9 @@ void Ecs::FrameSendingSystem::run()
 {
 
 	for (auto &entity : _Entities) {
-		if (entity.get()->hasComps<Drawable, Position>())
+		if (entity->hasComps<Drawable, Position>()) {
 			drawThisEntity(entity);
+		}
 	}
 }
 
@@ -38,5 +42,4 @@ void Ecs::FrameSendingSystem::drawThisEntity(std::shared_ptr<Entity> entity)
 			posComp.get()->getPosition().first,
 			posComp.get()->getPosition().second
 			}, _endpoint);
-	_ioService.run();
 }

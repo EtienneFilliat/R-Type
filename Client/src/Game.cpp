@@ -102,6 +102,7 @@ void Game::GameDisplay()
 	_window.clear();
     processFrame();
 	_window.display();
+	sleep(1);
 }
 
 void Game::run()

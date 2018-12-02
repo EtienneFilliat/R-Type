@@ -96,6 +96,7 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/FrameSendingSystem.hpp
 		Server/include/AISystem.hpp
 		Server/include/AISystem.hpp
+		Server/include/IoServiceWork.hpp
 		Server/include/Components/IComponent.hpp
 		Server/include/Components/AComponent.hpp
 		Server/include/Components/Health.hpp
