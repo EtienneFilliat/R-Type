@@ -5,6 +5,9 @@
 ** Client main
 */
 
+#include <boost/asio.hpp>
+#include "Network/UDPClient.hpp"
+
 int main(int ac, char **av)
 {
 	(void) ac;

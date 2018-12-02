@@ -16,6 +16,7 @@ set(SRC
 	../src/Ecs/Components/Acceleration.cpp
 	../src/Ecs/Components/Damages.cpp
 	../src/Ecs/Components/HitBox.cpp
+	../src/Ecs/Components/Drawable.cpp
 )
 
 set(HEAD
@@ -35,6 +36,7 @@ set(HEAD
 	../include/Components/HitBox.hpp
 	../include/Components/AI.hpp
 	../include/Components/Weapon.hpp
+	../include/Components/Drawable.hpp
 )
 
 set(TESTS
