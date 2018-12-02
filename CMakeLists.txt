@@ -34,6 +34,7 @@ set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Network/StreamBuffer/UDPClientStreamBuffer.hpp
 		Client/include/Network/StreamBuffer/UDPServerStreamBuffer.hpp
 		Client/include/IoServiceWork.hpp
+		Client/include/SafeQueue.hpp
 	)
 
 #	--------------- CLIENT_LINKING ---------------

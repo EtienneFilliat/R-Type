@@ -22,6 +22,6 @@ bool MoveComponent::run(boost::asio::ip::udp::socket &socket,
 	boost::asio::ip::udp::endpoint endpoint, struct UDPClientStreamBufferData &data
 ) const
 {
-	//std::cout << data.playerName << " - "<< data.event << " - " << data.direction << std::endl;
+	std::cout << data.playerName << " - "<< data.event << " - " << data.direction << std::endl;
 	return (true);
 }

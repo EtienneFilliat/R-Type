@@ -21,8 +21,7 @@ int main(int ac, char **av)
 	std::unique_ptr<IServerComponent> move = std::make_unique<MoveComponent>(MoveComponent(players));
 
 	server.addComponent(move);
-	// server.send({1, 1, 1, 1, 1, 1, 1}, endpoint);
-	// server.send({1, 1, 1, 1, 1, 1, 1}, endpoint);
+	server.send({1, 1, 1, 1, 1, 500, 700}, endpoint);
 	ioService.run();
 	return 0;
 }

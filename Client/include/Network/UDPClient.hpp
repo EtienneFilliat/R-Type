@@ -10,12 +10,13 @@
 
 #include <boost/asio.hpp>
 #include <functional>
+#include "SafeQueue.hpp"
 #include "StreamBuffer/UDPServerStreamBuffer.hpp"
 #include "StreamBuffer/UDPClientStreamBuffer.hpp"
 
 class UDPClient {
 public:
-	UDPClient(boost::asio::io_service &, unsigned short, const std::function<void(struct UDPServerStreamBufferData)> &);
+	UDPClient(boost::asio::io_service &, unsigned short, std::shared_ptr<SafeQueue<struct UDPServerStreamBufferData>>);
 	~UDPClient() = default;
 	void send(struct UDPClientStreamBufferData, boost::asio::ip::udp::endpoint);
 
@@ -24,7 +25,7 @@ private:
 	boost::asio::ip::udp::endpoint _endpoint;
 	UDPServerStreamBuffer _serverStreamBuffer;
 	UDPClientStreamBuffer _clientStreamBuffer;
-	std::function<void(struct UDPServerStreamBufferData)> _pushToQueue;
+	std::shared_ptr<SafeQueue<struct UDPServerStreamBufferData>> _QClass;
 
 	void read();
 	void routine(const boost::system::error_code &, std::size_t);

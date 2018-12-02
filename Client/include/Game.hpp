@@ -13,6 +13,7 @@
 	#include <queue>
 	#include "Network/UDPClient.hpp"
 	#include "Image.hpp"
+	#include "SafeQueue.hpp"
 	#include "Constants/constants.hpp"
 	#include "Network/StreamBuffer/UDPServerStreamBuffer.hpp"
 	#include "Network/StreamBuffer/UDPClientStreamBuffer.hpp"
@@ -29,13 +30,13 @@
 			Game(sf::RenderWindow &window, const std::string &ip, boost::asio::io_service &iso, const std::string &playername);
 			~Game();
 			void run();
-			static void pushToQueue(struct UDPServerStreamBufferData);
 
 		private:
 			bool GameEvents();
 			void GameDisplay();
 			void CheckPlayerInput(sf::Event &event);
 			void sendAction(int event, int dir = 0);
+			void processFrame();
 
 			sf::RenderWindow &_window;
 			std::string _ip;
@@ -43,9 +44,9 @@
 			Image *_monster1;
 			Image *_monster2;
 			std::string _playerName;
+			std::shared_ptr<SafeQueue<struct UDPServerStreamBufferData>> _QClass;
 			boost::asio::ip::udp::endpoint _endpoint;
 			UDPClient *_client;
-			std::queue<struct UDPServerStreamBufferData> _actions;
 	};
 
 #endif /* !GAME_HPP_ */

@@ -36,6 +36,14 @@ namespace Constants {
         DOWN
     };
 
+    enum TYPE {
+        UNKNOW,
+        PLAYER,
+        MONSTER_1,
+        MONSTER_2,
+        MISSILE
+    };
+
     const std::size_t MaxPayloadSize = 1024;
 }
 
