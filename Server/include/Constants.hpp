@@ -27,7 +27,7 @@ namespace Constants
 	enum EVENT {
         MOVE,
         SHOOT,
-        QUIT,    
+        QUIT,
     };
 
     enum DIRECTION {
