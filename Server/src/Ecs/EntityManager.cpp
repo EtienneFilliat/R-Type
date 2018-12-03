@@ -66,7 +66,7 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 unsigned int Ecs::EntityManager::createMonster() noexcept
 {
 	std::srand(std::time(nullptr));
-	// int random = 1 + std::rand() % 2;
+	int random = 1 + std::rand() % 2;
 
 	unsigned int id = _entityList.size() + 1;
 	std::shared_ptr<Entity> monsterEntity(new Entity(id));
@@ -89,7 +89,7 @@ unsigned int Ecs::EntityManager::createMonster() noexcept
 	std::shared_ptr<HitBox> hitboxComponent(
 		new HitBox(Constants::DefaultMonsterHitboxSizeX,
 		Constants::DefaultMonsterHitboxSizeX));
-	std::shared_ptr<AI> aiComponent(new AI(1));
+	std::shared_ptr<AI> aiComponent(new AI(random));
 
 	monsterEntity->addComp<Acceleration>(accComponent);
 	monsterEntity->addComp<Health>(healthComponent);
