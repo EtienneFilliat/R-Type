@@ -43,10 +43,6 @@ bool Game::GameEvents()
 void Game::sendAction(int event, int dir)
 {
 	struct UDPClientStreamBufferData data = {_playerName, event, dir};
-	std::cout << "Name :" << data.playerName 
-	<< " | Event [" << data.event 
-	<< "] | Dir [" << data.direction 
-	<< "] | SizeOf :" << sizeof(struct UDPClientStreamBufferData) << "\n";
 	_client->send(data, _endpoint);
 }
 
@@ -77,7 +73,6 @@ void Game::processFrame()
 {
 	while (!_QClass->empty()) {
 		auto item = _QClass->pop();
-		std::cout << "Process Frame IN : " << item.index << std::endl;
 		switch (item.index) {
 			case Constants::TYPE::PLAYER :
 				_player->setPos(item.x, item.y);

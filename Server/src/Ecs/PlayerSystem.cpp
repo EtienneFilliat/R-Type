@@ -50,17 +50,17 @@ void Ecs::PlayerSystem::movePlayer(std::shared_ptr<Entity> entity, int dir)
     auto pos = entity->getComp<Position>();
     auto posXY = pos->getPosition();
     switch (dir) {
-        case Constants::DIRECTION::LEFT :
-            pos->setYPos(posXY.second - accel->getAcceleration());
-            break;
-        case Constants::DIRECTION::RIGHT :
+        case Constants::DIRECTION::DOWN :
             pos->setYPos(posXY.second + accel->getAcceleration());
             break;
         case Constants::DIRECTION::UP :
-            pos->setYPos(posXY.first - accel->getAcceleration());
+            pos->setYPos(posXY.second - accel->getAcceleration());
             break;
-        case Constants::DIRECTION::DOWN :
-            pos->setYPos(posXY.first + accel->getAcceleration());
+        case Constants::DIRECTION::RIGHT :
+            pos->setXPos(posXY.first + accel->getAcceleration());
+            break;
+        case Constants::DIRECTION::LEFT :
+            pos->setXPos(posXY.first - accel->getAcceleration());
             break;
         default:
             break;
