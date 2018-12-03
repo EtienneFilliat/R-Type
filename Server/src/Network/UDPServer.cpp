@@ -33,14 +33,9 @@ void UDPServer::routine(const boost::system::error_code &error, std::size_t size
 {
 	struct UDPClientStreamBufferData data;
 
-	std::cout << "============ NEW EVENT ============\n";
-	std::cout << "Data Received (" << size << ")" << std::endl;
 	if (!error) {
 		data = _clientStreamBuffer.read(size);
 		_actionQueue->push(data);
-		std::cout << data.playerName << std::endl;
-		std::cout << "Event [" << data.event << "] | Direction [" << data.direction << "]" << std::endl;
-		std::cout << "============ END EVENT ============\n";
 		if (_components.find(data.event) != _components.end())
 			(*(_components.find(data.event))->second).run(_socket, _endpoint, data);
 		this->read();
