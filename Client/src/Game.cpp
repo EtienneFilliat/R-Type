@@ -5,8 +5,9 @@
 ** Game
 */
 
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <chrono>
+#include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
 Game::Game(sf::RenderWindow &window, const std::string &ip, boost::asio::io_service &iso, const std::string &name)
@@ -105,6 +106,11 @@ void Game::run()
 	_window.clear();
 	while (GameEvents()) 
 	{
+		auto start = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
 		GameDisplay();
+		auto end = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
+		std::chrono::microseconds time_span(end - start);
+    	if (time_span.count() < 41667)
+			usleep(41667 - time_span.count());
 	}
 }
