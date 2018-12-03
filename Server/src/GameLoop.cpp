@@ -25,5 +25,6 @@ void GameLoop::run()
 		_AISystem.run();
 		_hitboxSystem.run();
 		_frameSendingSystem.run();
+		usleep(10000);
 	}
 }
