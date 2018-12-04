@@ -23,19 +23,24 @@ Ecs::FrameSendingSystem::FrameSendingSystem(
 void Ecs::FrameSendingSystem::run()
 {
 	std::shared_ptr<Entity> toRemove;
+	bool removeAnEntity = false;
+
 	for (auto &entity : _Entities) {
 		if (entity->hasComps<Drawable, Position>()) {
 			std::pair<int, int> pos =
 				entity.get()->getComp<Position>()->getPosition();
 			std::pair<int, int> size =
 				entity.get()->getComp<Drawable>()->getSpriteSize();
-			if (pos.first < size.first * -1)
+			if (pos.first < size.first * -1) {
 				toRemove = entity;
+				removeAnEntity = true;
+			}
 			else
 				drawThisEntity(entity);
 		}
 	}
-	_Entities.remove(toRemove);
+	if (removeAnEntity)
+		_Entities.remove(toRemove);
 }
 
 void Ecs::FrameSendingSystem::drawThisEntity(std::shared_ptr<Entity> entity)
