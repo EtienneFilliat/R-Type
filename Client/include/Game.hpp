@@ -36,7 +36,7 @@
 			bool GameEvents();
 			void GameDisplay();
 			void CheckPlayerInput(sf::Event &event);
-			void sendAction(int event, int dir = 0);
+			void sendAction();
 			void processFrame();
 
 			sf::RenderWindow &_window;

@@ -45,29 +45,32 @@ bool Game::GameEvents()
 	return true;
 }
 
-void Game::sendAction(int event, int dir)
+void Game::sendAction()
 {
-	struct UDPClientStreamBufferData data = {_playerName, event, dir};
-	_client->send(data, _endpoint);
+	if (!_actions.empty()) {
+		_client->send(_actions.back(), _endpoint);
+		std::queue<struct UDPClientStreamBufferData> empty;
+		std::swap(_actions, empty);
+	}
 }
 
 void Game::CheckPlayerInput(sf::Event &event)
 {
 	switch (event.key.code) {
 		case sf::Keyboard::Z :
-			sendAction(Constants::EVENT::MOVE, Constants::DIRECTION::UP);
+			_actions.push({_playerName, Constants::EVENT::MOVE, Constants::DIRECTION::UP});
 			break;
 		case sf::Keyboard::Q :
-			sendAction(Constants::EVENT::MOVE, Constants::DIRECTION::LEFT);
+			_actions.push({_playerName, Constants::EVENT::MOVE, Constants::DIRECTION::LEFT});
 			break;
 		case sf::Keyboard::S :
-			sendAction(Constants::EVENT::MOVE, Constants::DIRECTION::DOWN);
+			_actions.push({_playerName, Constants::EVENT::MOVE, Constants::DIRECTION::DOWN});
 			break;
 		case sf::Keyboard::D :
-			sendAction(Constants::EVENT::MOVE, Constants::DIRECTION::RIGHT);
+			_actions.push({_playerName, Constants::EVENT::MOVE, Constants::DIRECTION::RIGHT});
 			break;
 		case sf::Keyboard::Space :
-			sendAction(Constants::EVENT::SHOOT);
+			_actions.push({_playerName, Constants::EVENT::SHOOT, 0});
 			break;
 		default :
 			break;
@@ -115,6 +118,7 @@ void Game::run()
 	{
 		gameClock.start();
 		GameDisplay();
+		sendAction();
 		gameClock.end();
 		gameClock.waitFrame();
 	}
