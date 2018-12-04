@@ -23,9 +23,10 @@ Ecs::AISystem::AISystem(std::list<std::shared_ptr<Entity>> &entities)
 void Ecs::AISystem::run()
 {
 	int AInumber = countAIs();
-	while (AInumber < Constants::MonsterNumber)
-		_Entities.push_back(EntityManager::createMonster(
-			_Entities.size()));
+	while (AInumber < Constants::MonsterNumber) {
+		_Entities.push_back(EntityManager::createMonster(_Entities.size()));
+		AInumber++;
+	}
 	for (auto &entity : _Entities) {
 		if (entity.get()->hasComps<AI, Position, Acceleration>()) {
 			moveAI(entity);
@@ -64,5 +65,5 @@ void Ecs::AISystem::AIPattern2(std::shared_ptr<Entity> entity)
 	entity.get()->getComp<Position>()->setXPos(
 		pos.first - entity.get()->getComp<Acceleration>()->getAcceleration());
 	entity.get()->getComp<Position>()->setYPos(
-		Constants::DefaultMonsterPosY + (std::sin(pos.first / 10) * 10));
+		Constants::DefaultMonsterPosY + (std::sin(pos.first / 30) * 50));
 }

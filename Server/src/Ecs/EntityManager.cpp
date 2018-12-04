@@ -20,7 +20,9 @@
 #include "EntityManager.hpp"
 
 Ecs::EntityManager::EntityManager()
-{}
+{
+	std::srand(std::time(nullptr));
+}
 
 Ecs::EntityManager::~EntityManager()
 {}
@@ -64,7 +66,6 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 std::shared_ptr<Ecs::Entity> Ecs::EntityManager::createMonster(
 	int entitySize) noexcept
 {
-	std::srand(std::time(nullptr));
 	int randomAI = 1 + std::rand() % 2;
 	int randomY = 1 + std::rand() % 800;
 

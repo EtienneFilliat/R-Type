@@ -38,7 +38,7 @@ namespace Constants
     };
 
 	// Player and Monsters defaults Stats
-	const int DefaultPlayerAccel = 3;
+	const int DefaultPlayerAccel = 10;
 	const int DefaultPlayerHealth = 200;
 	const int DefaultPlayerDamages = 20;
 	const int DefaultPlayerPosX = 100;
@@ -51,10 +51,10 @@ namespace Constants
 	const int DefaultPlayerHitboxSizeX = 64;
 	const int DefaultPlayerHitboxSizeY = 24;
 
-	const int DefaultMonsterAccel = 2;
+	const int DefaultMonsterAccel = 7;
 	const int DefaultMonsterHealth = 100;
 	const int DefaultMonsterDamages = 10;
-	const int DefaultMonsterPosX = 800;
+	const int DefaultMonsterPosX = 1300;
 	const int DefaultMonsterPosY = 300;
 	const int DefaultMonsterSpriteSheetIndex = 2;
 	const int DefaultMonsterSpriteOffsetX = 0;
@@ -64,9 +64,9 @@ namespace Constants
 	const int DefaultMonsterHitboxSizeX = 64;
 	const int DefaultMonsterHitboxSizeY = 56;
 
-	const int MonsterNumber = 3;
+	const int MonsterNumber = 10;
 
-	const int DefaultMissileAccel = 10;
+	const int DefaultMissileAccel = 20;
 	const int DefaultMissileHealth = 1;
 	const int DefaultMissileDamages = 100;
 	const int DefaultMissilePosX = 800;
