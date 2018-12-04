@@ -20,8 +20,8 @@
 	#include "Network/StreamBuffer/UDPClientStreamBuffer.hpp"
 
 	#define PLAYER_SPRITE	"Client/res/spacecraft.png"
-	#define MONSTER1_SPRITE	"Client/res/ovni.png"
-	#define MONSTER2_SPRITE	"Client/res/ufo.png"
+	#define MONSTER1_SPRITE	"Client/res/monster1.png"
+	#define MONSTER2_SPRITE	"Client/res/monster2.png"
 	#define SPRITE_SIZE		64
 	#define STD_SERV_UPD_PORT	1488
 	#define STD_CLI_UPD_PORT	1234
@@ -44,6 +44,7 @@
 			Image *_player;
 			Image *_monster1;
 			Image *_monster2;
+			Image *_missile;
 			std::string _playerName;
 			std::shared_ptr<SafeQueue<struct UDPServerStreamBufferData>> _QClass;
 			boost::asio::ip::udp::endpoint _endpoint;

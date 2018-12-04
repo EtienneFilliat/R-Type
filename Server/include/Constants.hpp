@@ -46,10 +46,10 @@ namespace Constants
 	const int DefaultPlayerSpriteSheetIndex = 1;
 	const int DefaultPlayerSpriteOffsetX = 0;
 	const int DefaultPlayerSpriteOffsetY = 0;
-	const int DefaultPlayerSpriteSizeX = 50;
-	const int DefaultPlayerSpriteSizeY = 50;
-	const int DefaultPlayerHitboxSizeX = 100;
-	const int DefaultPlayerHitboxSizeY = 100;
+	const int DefaultPlayerSpriteSizeX = 64;
+	const int DefaultPlayerSpriteSizeY = 24;
+	const int DefaultPlayerHitboxSizeX = 64;
+	const int DefaultPlayerHitboxSizeY = 24;
 
 	const int DefaultMonsterAccel = 2;
 	const int DefaultMonsterHealth = 100;
@@ -59,10 +59,10 @@ namespace Constants
 	const int DefaultMonsterSpriteSheetIndex = 2;
 	const int DefaultMonsterSpriteOffsetX = 0;
 	const int DefaultMonsterSpriteOffsetY = 0;
-	const int DefaultMonsterSpriteSizeX = 50;
-	const int DefaultMonsterSpriteSizeY = 50;
-	const int DefaultMonsterHitboxSizeX = 100;
-	const int DefaultMonsterHitboxSizeY = 100;
+	const int DefaultMonsterSpriteSizeX = 64;
+	const int DefaultMonsterSpriteSizeY = 56;
+	const int DefaultMonsterHitboxSizeX = 64;
+	const int DefaultMonsterHitboxSizeY = 56;
 
 
 } // namespace Constants

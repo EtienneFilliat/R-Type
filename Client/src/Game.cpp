@@ -17,6 +17,7 @@ Game::Game(sf::RenderWindow &window, const std::string &ip, boost::asio::io_serv
     _player(new Image(PLAYER_SPRITE)),
     _monster1(new Image(MONSTER1_SPRITE)),
     _monster2(new Image(MONSTER2_SPRITE)),
+	// _missile(new Image(MISSILE_SPRITE))
 	_playerName(name + '\n'),
 	_QClass(new SafeQueue<struct UDPServerStreamBufferData>()),
 	_endpoint(boost::asio::ip::address::from_string(ip), STD_SERV_UPD_PORT),
