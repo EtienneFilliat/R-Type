@@ -31,7 +31,7 @@ void Ecs::FrameSendingSystem::run()
 				entity.get()->getComp<Position>()->getPosition();
 			std::pair<int, int> size =
 				entity.get()->getComp<Drawable>()->getSpriteSize();
-			if (pos.first < size.first * -1) {
+			if (pos.first < size.first * -1 || pos.first > 2000) {
 				toRemove = entity;
 				removeAnEntity = true;
 			}

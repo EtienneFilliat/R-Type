@@ -100,6 +100,42 @@ unsigned int Ecs::EntityManager::createMonster() noexcept
 	return id;
 }
 
+unsigned int Ecs::EntityManager::createMissile() noexcept
+{
+	unsigned int id = _entityList.size() + 1;
+	std::shared_ptr<Entity> missileEntity(new Entity(id));
+
+	std::shared_ptr<Drawable> drawComponent(
+		new Drawable(Constants::DefaultMissileSpriteSheetIndex,
+		std::make_pair(Constants::DefaultMissileSpriteOffsetX,
+		Constants::DefaultMissileSpriteOffsetY),
+		std::make_pair(Constants::DefaultMissileSpriteSizeX,
+		Constants::DefaultMissileSpriteSizeY)));
+	std::shared_ptr<Acceleration> accComponent(
+		new Acceleration(Constants::DefaultMissileAccel));
+	std::shared_ptr<Health> healthComponent(
+		new Health(Constants::DefaultMissileHealth));
+	std::shared_ptr<Damages> damagesComponent(
+		new Damages(Constants::DefaultMissileDamages));
+	std::shared_ptr<Position> posComponent(
+		new Position(Constants::DefaultMissilePosX,
+		Constants::DefaultMissilePosY));
+	std::shared_ptr<HitBox> hitboxComponent(
+		new HitBox(Constants::DefaultMissileHitboxSizeX,
+		Constants::DefaultMissileHitboxSizeX));
+	std::shared_ptr<Weapon> weaponComponent(new Weapon());
+
+	missileEntity->addComp<Acceleration>(accComponent);
+	missileEntity->addComp<Health>(healthComponent);
+	missileEntity->addComp<Damages>(damagesComponent);
+	missileEntity->addComp<Position>(posComponent);
+	missileEntity->addComp<HitBox>(hitboxComponent);
+	missileEntity->addComp<Weapon>(weaponComponent);
+	missileEntity->addComp<Drawable>(drawComponent);
+	_entityList.push_back(missileEntity);
+	return id;
+}
+
 std::shared_ptr<Ecs::Entity> Ecs::EntityManager::getEntityById(unsigned int id)
 {
 	for (auto &y : _entityList) {

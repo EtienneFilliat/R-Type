@@ -64,6 +64,19 @@ namespace Constants
 	const int DefaultMonsterHitboxSizeX = 64;
 	const int DefaultMonsterHitboxSizeY = 56;
 
+	const int DefaultMissileAccel = 10;
+	const int DefaultMissileHealth = 1;
+	const int DefaultMissileDamages = 100;
+	const int DefaultMissilePosX = 800;
+	const int DefaultMissilePosY = 300;
+	const int DefaultMissileSpriteSheetIndex = 4;
+	const int DefaultMissileSpriteOffsetX = 0;
+	const int DefaultMissileSpriteOffsetY = 0;
+	const int DefaultMissileSpriteSizeX = 12;
+	const int DefaultMissileSpriteSizeY = 48;
+	const int DefaultMissileHitboxSizeX = 12;
+	const int DefaultMissileHitboxSizeY = 48;
+
 
 } // namespace Constants
 
