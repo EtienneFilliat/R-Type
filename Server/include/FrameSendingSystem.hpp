@@ -9,6 +9,7 @@
 	#define FRAMESENDINGSYSTEM_HPP_
 	#include "ASystem.hpp"
 	#include "Network/UDPServer.hpp"
+	#include "Network/DataStruct/Player.hpp"
 
 namespace Ecs {
 
@@ -16,6 +17,7 @@ namespace Ecs {
 		public:
 			FrameSendingSystem(
 				std::list<std::shared_ptr<Entity>> &entities,
+				std::list<struct TCPPlayer> &players,
 				UDPServer &server,
 				boost::asio::ip::udp::endpoint	_endpoint);
 			void run() final;
@@ -24,6 +26,7 @@ namespace Ecs {
 			void drawThisEntity(std::shared_ptr<Entity> entity);
 			boost::asio::ip::udp::endpoint	_endpoint;
 			UDPServer &_server;
+			std::list<struct TCPPlayer> &_players;
 	};
 
 }

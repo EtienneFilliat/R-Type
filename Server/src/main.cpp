@@ -16,10 +16,11 @@ int main()
 	Ecs::EntityManager entityManager;
 	entityManager.createPlayer();
 	entityManager.createMonster();
-	IoServiceWork s;
+	IoServiceWork sUDP;
+	IoServiceWork sTCP;
 	std::list<std::shared_ptr<Ecs::Entity>> entityList =
 		entityManager.getEntsByComp<Ecs::Position>();
-	GameLoop gameLoop(entityList, s.ioService(), "127.0.0.1");
+	GameLoop gameLoop(entityList, sUDP.ioService(), sTCP.ioService(), "127.0.0.1");
 	gameLoop.run();
 	return 0;
 }
