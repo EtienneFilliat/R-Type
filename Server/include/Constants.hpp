@@ -64,6 +64,8 @@ namespace Constants
 	const int DefaultMonsterHitboxSizeX = 64;
 	const int DefaultMonsterHitboxSizeY = 56;
 
+	const int MonsterNumber = 3;
+
 	const int DefaultMissileAccel = 10;
 	const int DefaultMissileHealth = 1;
 	const int DefaultMissileDamages = 100;

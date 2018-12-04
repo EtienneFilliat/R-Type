@@ -61,16 +61,18 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 	return id;
 }
 
-unsigned int Ecs::EntityManager::createMonster() noexcept
+std::shared_ptr<Ecs::Entity> Ecs::EntityManager::createMonster(
+	int entitySize) noexcept
 {
 	std::srand(std::time(nullptr));
-	int random = 1 + std::rand() % 2;
+	int randomAI = 1 + std::rand() % 2;
+	int randomY = 1 + std::rand() % 800;
 
-	unsigned int id = _entityList.size() + 1;
+	unsigned int id = entitySize + 1;
 	std::shared_ptr<Entity> monsterEntity(new Entity(id));
 
 	std::shared_ptr<Drawable> drawComponent(
-		new Drawable(random + 1,
+		new Drawable(randomAI + 1,
 		std::make_pair(Constants::DefaultMonsterSpriteOffsetX,
 		Constants::DefaultMonsterSpriteOffsetY),
 		std::make_pair(Constants::DefaultMonsterSpriteSizeX,
@@ -83,11 +85,11 @@ unsigned int Ecs::EntityManager::createMonster() noexcept
 		new Damages(Constants::DefaultMonsterDamages));
 	std::shared_ptr<Position> posComponent(
 		new Position(Constants::DefaultMonsterPosX,
-		Constants::DefaultMonsterPosY));
+		randomY));
 	std::shared_ptr<HitBox> hitboxComponent(
 		new HitBox(Constants::DefaultMonsterHitboxSizeX,
 		Constants::DefaultMonsterHitboxSizeX));
-	std::shared_ptr<AI> aiComponent(new AI(random));
+	std::shared_ptr<AI> aiComponent(new AI(randomAI));
 
 	monsterEntity->addComp<Acceleration>(accComponent);
 	monsterEntity->addComp<Health>(healthComponent);
@@ -96,8 +98,7 @@ unsigned int Ecs::EntityManager::createMonster() noexcept
 	monsterEntity->addComp<HitBox>(hitboxComponent);
 	monsterEntity->addComp<AI>(aiComponent);
 	monsterEntity->addComp<Drawable>(drawComponent);
-	_entityList.push_back(monsterEntity);
-	return id;
+	return monsterEntity;
 }
 
 std::shared_ptr<Ecs::Entity> Ecs::EntityManager::createMissile(int entitySize, std::pair<int, int> playerPos) noexcept

@@ -7,6 +7,7 @@
 
 #include <cmath>
 #include "AISystem.hpp"
+#include "EntityManager.hpp"
 #include "Components/HitBox.hpp"
 #include "Components/Damages.hpp"
 #include "Components/Health.hpp"
@@ -21,11 +22,25 @@ Ecs::AISystem::AISystem(std::list<std::shared_ptr<Entity>> &entities)
 
 void Ecs::AISystem::run()
 {
+	int AInumber = countAIs();
+	while (AInumber < Constants::MonsterNumber)
+		_Entities.push_back(EntityManager::createMonster(
+			_Entities.size()));
 	for (auto &entity : _Entities) {
 		if (entity.get()->hasComps<AI, Position, Acceleration>()) {
 			moveAI(entity);
 		}
 	}
+}
+
+int Ecs::AISystem::countAIs()
+{
+	int count = 0;
+	for (auto &entity : _Entities) {
+		if (entity.get()->hasComp<AI>())
+			count++;
+	}
+	return count++;
 }
 
 void Ecs::AISystem::moveAI(std::shared_ptr<Entity> entity)
