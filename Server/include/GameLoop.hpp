@@ -13,6 +13,7 @@
 	#include "FrameSendingSystem.hpp"
 	#include "PlayerSystem.hpp"
 	#include "Network/UDPServer.hpp"
+	#include "WeaponSystem.hpp"
 
 	#define STD_CLI_UPD_PORT	1234
 	#define STD_SERV_UPD_PORT	1488
@@ -30,6 +31,7 @@ class GameLoop {
 		UDPServer	*_server;
 		Ecs::FrameSendingSystem	_frameSendingSystem;
 		Ecs::PlayerSystem _playerSystem;
+		Ecs::WeaponSystem _weaponSystem;
 };
 
 #endif /* !GAMELOOP_HPP_ */

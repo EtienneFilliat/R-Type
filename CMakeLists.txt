@@ -75,6 +75,7 @@ set(SRC_SERVER Server/src/main.cpp
 		Server/src/Ecs/FrameSendingSystem.cpp
 		Server/src/Ecs/AISystem.cpp
 		Server/src/Ecs/PlayerSystem.cpp
+		Server/src/Ecs/WeaponSystem.cpp
 		Server/src/Ecs/Components/Health.cpp
 		Server/src/Ecs/Components/Position.cpp
 		Server/src/Ecs/Components/Acceleration.cpp
@@ -104,6 +105,7 @@ set(HPP_SERVER Server/include/Constants.hpp
 		Server/include/FrameSendingSystem.hpp
 		Server/include/AISystem.hpp
 		Server/include/PlayerSystem.hpp
+		Server/include/WeaponSystem.hpp
 		Server/include/IoServiceWork.hpp
 		Server/include/SafeQueue.hpp
 		Server/include/Timer.hpp

@@ -15,7 +15,8 @@ GameLoop::GameLoop(std::list<std::shared_ptr<Ecs::Entity>> &list, boost::asio::i
 	_endpoint(boost::asio::ip::address::from_string(ip), STD_CLI_UPD_PORT),
 	_server(new UDPServer(iso, STD_SERV_UPD_PORT, _actionQueue)),
 	_frameSendingSystem(list, *_server, _endpoint),
-	_playerSystem(list, _actionQueue)
+	_playerSystem(list, _actionQueue),
+	_weaponSystem(list)
 {}
 
 void GameLoop::run()
@@ -29,6 +30,7 @@ void GameLoop::run()
 		_AISystem.run();
 		_hitboxSystem.run();
 		_frameSendingSystem.run();
+		_weaponSystem.run();
 		gameClock.end();
 		gameClock.waitFrame();
 	}
