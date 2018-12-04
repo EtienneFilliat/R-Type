@@ -5,6 +5,7 @@
 ** Created by hexa,
 */
 
+#include <iostream>
 #include "Network/Components/ConnectComponent.hpp"
 
 bool ConnectComponent::run(boost::asio::ip::tcp::socket &socket,
@@ -18,8 +19,10 @@ bool ConnectComponent::run(boost::asio::ip::tcp::socket &socket,
 		ret = !(player.name == data.body);
 	if (ret) {
 		_playersConnected.push_back({data.body, socket});
+		std::cout << "OK" << std::endl;
 		streamBuffer.write(OK, 0, "");
 	} else {
+		std::cout << "KO" << std::endl;
 		streamBuffer.write(KO, 0, "");
 	}
 	boost::asio::write(socket, streamBuffer.getStreamBuffer());

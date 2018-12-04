@@ -37,6 +37,8 @@ void TCPServerRoutine::routine(const boost::system::error_code &error)
 
 	if (!error) {
 		data = _streamBuffer.read();
+		std::cout << data.action << std::endl;
+		std::cout << data.body << std::endl;
 		if (_components.find(data.action) != _components.end())
 			(*(_components.find(data.action))->second).run(_socket, data);
 		this->read();

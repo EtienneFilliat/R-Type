@@ -13,6 +13,7 @@
 #include "IoServiceWork.hpp"
 #include "Window.hpp"
 #include "Game.hpp"
+#include "Network/StreamBuffer/TCPStreamBuffer.hpp"
 
 
 Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
@@ -65,9 +66,9 @@ void Menu::Window::Events()
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 			sf::Vector2i mousePos = sf::Mouse::getPosition(window);                                                           
         	sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-			if (joingameBtn.IsPressed(mousePosF)) //&&
-				//!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty())
-				inGame = true; //= ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
+			if (joingameBtn.IsPressed(mousePosF) &&
+				!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty())
+				inGame = ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
 			if (ipTextField.isSelected(mousePosF) && !isIp)
 				isIp = true;
 			if (portTextField.isSelected(mousePosF) && isIp)
@@ -78,43 +79,47 @@ void Menu::Window::Events()
 
 bool Menu::Window::ProcessRes(std::size_t bytesRecived, char *res)
 {
+	std::cout << "procces" << std::endl;
 	if (bytesRecived < 1)
 		return false;
 	if (res[0] != Constants::TcpActions::OK)
 		return false;
+	std::cout << "true" << std::endl;
 	return true;
 }
 
 bool Menu::Window::ConnectToServer(const std::string &ip, const std::string &portString)
 {
-	sf::TcpSocket socket;
-	std::string playerName = "PlayerName";
+
+	std::string playerName = "PlayerName\n";
+	boost::asio::io_service ios;
+	boost::asio::ip::tcp::socket socket(ios);
+	TCPStreamBuffer streambuffer;
 	int port = 0;
 	try {
 		port = std::stoi(portString);
 	} catch (std::exception &e) {
-		port = 0;
+		return false;
 	}
-	sf::Socket::Status status = socket.connect(ip, port);
-	if (status != sf::Socket::Done)
+	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(ip), port);
+
+	socket.connect(endpoint);
+	streambuffer.write(Constants::TcpActions::CONNECT, playerName.size(), playerName);
+	boost::asio::write(socket, streambuffer.getStreamBuffer());
+	boost::asio::read(socket, streambuffer.getStreamBuffer(), boost::asio::transfer_at_least(1));
+	TCPStreamBufferData data = streambuffer.read();
+	socket.close();
+	if (data.action != Constants::TcpActions::OK)
 		return false;
-	_ip = ip;
-	std::string req = FormatTCPData(Constants::TcpActions::CONNECT, playerName);
-	if (socket.send(req.c_str(), req.size()) != sf::Socket::Done)
-		return false;
-	char res[Constants::MaxPayloadSize];
-	std::memset(res, '\0', Constants::MaxPayloadSize);
-	std::size_t received;
-	if (socket.receive(res, Constants::MaxPayloadSize, received) != sf::Socket::Done)
-		return false;
-	return ProcessRes(received, res);
+	return false;
 }
 
 std::string Menu::Window::FormatTCPData(Constants::TcpActions action, std::string &payload)
 {
 	std::string packet;
-	packet += static_cast<char>(action);
-	packet += static_cast<char>(payload.size());
+	int size = payload.size();
+	packet += reinterpret_cast<char *>(&action);
+	packet += reinterpret_cast<char *>(&size);
 	packet += payload;
 	return packet;
 }
@@ -140,7 +145,7 @@ void Menu::Window::Loop()
 			Events();
 			Display();
 		} else {
-			Game game(window, "127.0.0.1", s.ioService(), "PlayerName"); //_ip
+			Game game(window, _ip, s.ioService(), "PlayerName"); //_ip
 			game.run();
 		}
 	}

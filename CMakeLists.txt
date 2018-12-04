@@ -24,6 +24,7 @@ set(SRC_CLIENT Client/src/main.cpp
 		Client/src/Network/StreamBuffer/AStreamBuffer.cpp
 		Client/src/Network/StreamBuffer/UDPClientStreamBuffer.cpp
 		Client/src/Network/StreamBuffer/UDPServerStreamBuffer.cpp
+		Client/src/Network/StreamBuffer/TCPStreamBuffer.cpp
 	)
 
 set(HPP_CLIENT Client/include/Window.hpp
@@ -39,6 +40,7 @@ set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Network/StreamBuffer/AStreamBuffer.hpp
 		Client/include/Network/StreamBuffer/UDPClientStreamBuffer.hpp
 		Client/include/Network/StreamBuffer/UDPServerStreamBuffer.hpp
+		Client/include/Network/StreamBuffer/TCPStreamBuffer.hpp
 		Client/include/IoServiceWork.hpp
 		Client/include/SafeQueue.hpp
 	)
