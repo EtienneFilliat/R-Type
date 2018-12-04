@@ -70,7 +70,7 @@ unsigned int Ecs::EntityManager::createMonster() noexcept
 	std::shared_ptr<Entity> monsterEntity(new Entity(id));
 
 	std::shared_ptr<Drawable> drawComponent(
-		new Drawable(Constants::DefaultMonsterSpriteSheetIndex,
+		new Drawable(random + 1,
 		std::make_pair(Constants::DefaultMonsterSpriteOffsetX,
 		Constants::DefaultMonsterSpriteOffsetY),
 		std::make_pair(Constants::DefaultMonsterSpriteSizeX,

@@ -22,6 +22,9 @@ Game::Game(sf::RenderWindow &window, const std::string &ip, boost::asio::io_serv
 	_endpoint(boost::asio::ip::address::from_string(ip), STD_SERV_UPD_PORT),
 	_client(new UDPClient(iso, STD_CLI_UPD_PORT, _QClass))
 {
+	_paralax.addbck("Client/res/parallax-space-backgound.png");
+	_paralax.addbck("Client/res/parallax-space-far-planets.png");
+	_paralax.addbck("Client/res/parallax-space-stars.png");
 }
 
 Game::~Game()
@@ -98,6 +101,7 @@ void Game::GameDisplay()
 {
 	if (!_QClass->empty())
 		_window.clear();
+	_paralax.moveBackground(_window);
     processFrame();
 	_window.display();
 }
@@ -105,8 +109,8 @@ void Game::GameDisplay()
 void Game::run()
 {
 
-	_window.clear();
 	Timer gameClock;
+	_window.clear();
 	while (GameEvents()) 
 	{
 		gameClock.start();

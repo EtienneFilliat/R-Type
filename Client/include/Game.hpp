@@ -14,6 +14,7 @@
 	#include "Network/UDPClient.hpp"
 	#include "Image.hpp"
 	#include "SafeQueue.hpp"
+	#include "Paralax.hpp"
 	#include "Constants/constants.hpp"
 	#include "Network/StreamBuffer/UDPServerStreamBuffer.hpp"
 	#include "Network/StreamBuffer/UDPClientStreamBuffer.hpp"
@@ -47,6 +48,8 @@
 			std::shared_ptr<SafeQueue<struct UDPServerStreamBufferData>> _QClass;
 			boost::asio::ip::udp::endpoint _endpoint;
 			UDPClient *_client;
+			Paralax _paralax;
+			std::queue<struct UDPClientStreamBufferData> _actions;
 	};
 
 #endif /* !GAME_HPP_ */

@@ -18,6 +18,8 @@ set(SRC_CLIENT Client/src/main.cpp
 		Client/src/Game.cpp
 		Client/src/Timer.cpp
 		Client/src/TextField.cpp
+		Client/src/Background.cpp
+		Client/src/Paralax.cpp
 		Client/src/Network/UDPClient.cpp
 		Client/src/Network/StreamBuffer/AStreamBuffer.cpp
 		Client/src/Network/StreamBuffer/UDPClientStreamBuffer.cpp
@@ -30,6 +32,8 @@ set(HPP_CLIENT Client/include/Window.hpp
 		Client/include/Game.hpp
 		Client/include/TextField.hpp
 		Client/include/Timer.hpp
+		Client/include/Background.hpp
+		Client/include/Paralax.hpp
 		Client/include/Constants/constants.hpp
 		Client/include/Network/UDPClient.hpp
 		Client/include/Network/StreamBuffer/AStreamBuffer.hpp

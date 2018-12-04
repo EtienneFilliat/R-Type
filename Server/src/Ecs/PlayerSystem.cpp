@@ -22,7 +22,8 @@ Ecs::PlayerSystem::PlayerSystem(std::list<std::shared_ptr<Entity>> &entities, st
 void Ecs::PlayerSystem::run()
 {
     for (auto &entity : _Entities) {
-		if (entity.get()->hasComps<Position, Acceleration, Weapon>()) {
+		if (entity.get()->hasComps<Position, Acceleration>() 
+            && !entity->hasComp<AI>() && !entity->hasComp<Weapon>()) {
 			handlePlayerAction(entity);
 		}
 	}
