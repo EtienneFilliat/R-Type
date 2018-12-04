@@ -5,7 +5,7 @@
 ** game loop
 */
 
-#include <chrono>
+#include "Timer.hpp"
 #include "GameLoop.hpp"
 
 GameLoop::GameLoop(std::list<std::shared_ptr<Ecs::Entity>> &list, boost::asio::io_service &iso, const std::string &ip)
@@ -20,16 +20,20 @@ GameLoop::GameLoop(std::list<std::shared_ptr<Ecs::Entity>> &list, boost::asio::i
 
 void GameLoop::run()
 {
+	Timer gameClock;
+
 	while (true) {
-		auto start = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
+		gameClock.start();
 		if (!_actionQueue->empty())
 			_playerSystem.run();
 		_AISystem.run();
 		_hitboxSystem.run();
 		_frameSendingSystem.run();
-		auto end = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
-		std::chrono::microseconds time_span(end - start);
-    	if (time_span.count() < 41667)
-			usleep(41667 - time_span.count());
+		gameClock.end();
+		gameClock.waitFrame();
+		// auto end = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
+		// std::chrono::microseconds time_span(end - start);
+    	// if (time_span.count() < 41667)
+		// 	usleep(41667 - time_span.count());
 	}
 }

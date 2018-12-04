@@ -9,6 +9,7 @@
 #include <chrono>
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+#include "Timer.hpp"
 
 Game::Game(sf::RenderWindow &window, const std::string &ip, boost::asio::io_service &iso, const std::string &name)
     : _window(window),
@@ -103,14 +104,14 @@ void Game::GameDisplay()
 
 void Game::run()
 {
+
 	_window.clear();
+	Timer gameClock;
 	while (GameEvents()) 
 	{
-		auto start = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
+		gameClock.start();
 		GameDisplay();
-		auto end = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
-		std::chrono::microseconds time_span(end - start);
-    	if (time_span.count() < 41667)
-			usleep(41667 - time_span.count());
+		gameClock.end();
+		gameClock.waitFrame();
 	}
 }
