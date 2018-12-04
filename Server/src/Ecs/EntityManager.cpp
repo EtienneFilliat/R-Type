@@ -46,7 +46,6 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 	std::shared_ptr<Position> posComponent(
 		new Position(Constants::DefaultPlayerPosX,
 		Constants::DefaultPlayerPosY));
-	std::shared_ptr<Weapon> weaponComponent(new Weapon());
 	std::shared_ptr<HitBox> hitboxComponent(
 		new HitBox(Constants::DefaultPlayerHitboxSizeX,
 		Constants::DefaultPlayerHitboxSizeX));
@@ -56,7 +55,6 @@ unsigned int Ecs::EntityManager::createPlayer() noexcept
 	playerEntity->addComp<Health>(healthComponent);
 	playerEntity->addComp<Damages>(damagesComponent);
 	playerEntity->addComp<Position>(posComponent);
-	playerEntity->addComp<Weapon>(weaponComponent);
 	playerEntity->addComp<HitBox>(hitboxComponent);
 	playerEntity->addComp<Drawable>(drawComponent);
 	_entityList.push_back(playerEntity);

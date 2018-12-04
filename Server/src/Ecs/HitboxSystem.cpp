@@ -70,7 +70,7 @@ void Ecs::HitboxSystem::checkForDamages(std::shared_ptr<Entity> entity,
 
 	if (entityPos.first + entityHitbox.first > otherPos.first &&
 		entityPos.first < otherPos.first + otherHitbox.first &&
-		entityPos.second + entityHitbox.second > otherHitbox.second &&
+		entityPos.second + entityHitbox.second > otherPos.second &&
 		entityPos.second < otherPos.second + otherHitbox.second) {
 		takeDamages(entity, otherEntity);
 	}
