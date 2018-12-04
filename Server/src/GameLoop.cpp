@@ -31,9 +31,5 @@ void GameLoop::run()
 		_frameSendingSystem.run();
 		gameClock.end();
 		gameClock.waitFrame();
-		// auto end = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now());
-		// std::chrono::microseconds time_span(end - start);
-    	// if (time_span.count() < 41667)
-		// 	usleep(41667 - time_span.count());
 	}
 }

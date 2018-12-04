@@ -11,6 +11,8 @@
     #include "ASystem.hpp"
     #include "SafeQueue.hpp"
     #include "Constants.hpp"
+    #include "EntityManager.hpp"
+    #include "Components/Position.hpp"
     #include "Network/StreamBuffer/UDPClientStreamBuffer.hpp"
 
 namespace Ecs {
@@ -23,6 +25,7 @@ namespace Ecs {
         private:
             void handlePlayerAction(std::shared_ptr<Entity> entity);
             void movePlayer(std::shared_ptr<Entity> entity, int dir);
+            void handleShoot(std::shared_ptr<Ecs::Position> pos);
 
             std::shared_ptr<SafeQueue<struct UDPClientStreamBufferData>> _actionQueue;
     };

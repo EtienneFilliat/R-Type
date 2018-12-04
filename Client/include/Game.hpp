@@ -22,6 +22,7 @@
 	#define PLAYER_SPRITE	"Client/res/spacecraft.png"
 	#define MONSTER1_SPRITE	"Client/res/monster1.png"
 	#define MONSTER2_SPRITE	"Client/res/monster2.png"
+	#define MISSILE_SPRITE	"Client/res/attack.png"
 	#define SPRITE_SIZE		64
 	#define STD_SERV_UPD_PORT	1488
 	#define STD_CLI_UPD_PORT	1234

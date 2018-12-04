@@ -38,6 +38,7 @@ void Ecs::PlayerSystem::handlePlayerAction(std::shared_ptr<Entity> entity)
                 movePlayer(entity, action.direction);
                 break;
             case Constants::EVENT::SHOOT :
+                handleShoot(entity->getComp<Position>());
                 break;
             default :
                 break;
@@ -66,4 +67,13 @@ void Ecs::PlayerSystem::movePlayer(std::shared_ptr<Entity> entity, int dir)
         default:
             break;
     }
+}
+
+void Ecs::PlayerSystem::handleShoot(std::shared_ptr<Ecs::Position> pos)
+{
+    if (!pos) {
+        std::cout << "Nop" << std::endl;
+        return ;
+    }
+    _Entities.push_back(EntityManager::createMissile(_Entities.size(), pos->getPosition()));
 }
