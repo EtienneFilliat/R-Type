@@ -13,6 +13,7 @@
 
 struct TCPPlayer {
 	std::string &name;
+	std::string ip;
 	boost::asio::ip::tcp::socket &socket;
 };
 
