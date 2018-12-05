@@ -35,6 +35,10 @@ Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
 		portTextField.setPos(800, 670);
 		portTextField.setMaxCharacters(5);
 	}
+	if (_music.openFromFile("Client/res/interstellar.ogg")) {
+		_music.setLoop(true);
+		_music.play();
+	}
 	background.get_sprite().scale(sf::Vector2f(static_cast<float>(mode.width) / static_cast<float>(MENU_BG_WIDTH), static_cast<float>(mode.height) / static_cast<float>(MENU_BG_HEIGHT)));
 }
 

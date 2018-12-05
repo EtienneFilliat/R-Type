@@ -63,8 +63,9 @@ namespace Menu {
                 TextField ipTextField;
                 TextField portTextField;
                 std::string _ip;
-                sf::Font font;
                 sf::Music _music;
+                sf::Font font;
+                // sf:: _buffer;
     };
 
 }
