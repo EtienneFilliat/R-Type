@@ -20,6 +20,7 @@ bool ConnectComponent::run(boost::asio::ip::tcp::socket &socket,
 	if (ret) {
 		_playersConnected.push_back({data.body, socket});
 		std::cout << "OK" << std::endl;
+		std::cout << socket.remote_endpoint().address().to_string() << std::endl;
 		streamBuffer.write(OK, 0, "");
 	} else {
 		std::cout << "KO" << std::endl;
