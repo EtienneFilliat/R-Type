@@ -21,7 +21,8 @@ Game::Game(sf::RenderWindow &window, const std::string &ip, boost::asio::io_serv
 	_playerName(name + '\n'),
 	_QClass(new SafeQueue<struct UDPServerStreamBufferData>()),
 	_endpoint(boost::asio::ip::address::from_string(ip), STD_SERV_UPD_PORT),
-	_client(new UDPClient(iso, STD_CLI_UPD_PORT, _QClass))
+	_client(new UDPClient(iso, STD_CLI_UPD_PORT, _QClass)),
+	_shoot("Client/res/pew-pew.ogg")
 {
 	_paralax.addbck("Client/res/parallax-space-backgound.png");
 	_paralax.addbck("Client/res/parallax-space-far-planets.png");
@@ -49,6 +50,8 @@ bool Game::GameEvents()
 void Game::sendAction()
 {
 	if (!_actions.empty()) {
+		if (_actions.back().event == Constants::EVENT::SHOOT)
+			_shoot.replay();
 		_client->send(_actions.back(), _endpoint);
 		std::queue<struct UDPClientStreamBufferData> empty;
 		std::swap(_actions, empty);

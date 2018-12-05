@@ -15,6 +15,8 @@ class Music {
 		Music(const std::string &path);
 		~Music();
         inline void play() { _music.play(); };
+		inline void replay() { _music.stop(); _music.play(); };
+		inline void stop() { _music.stop(); };
         inline void isRepeatable(bool repeat) { _music.setLoop(repeat); };
 
 	private:
