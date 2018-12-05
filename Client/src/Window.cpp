@@ -65,9 +65,11 @@ void Menu::Window::Events()
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 			sf::Vector2i mousePos = sf::Mouse::getPosition(window);                                                           
         	sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-			if (joingameBtn.IsPressed(mousePosF)) //&&
-				//!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty())
-				inGame = true; //= ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
+			if (joingameBtn.IsPressed(mousePosF) &&
+				!ipTextField.getData().isEmpty() && !portTextField.getData().isEmpty()) {
+					_ip = ipTextField.getData().toAnsiString();
+					inGame = true; //= ConnectToServer(ipTextField.getData().toAnsiString(), portTextField.getData().toAnsiString());
+				}
 			if (ipTextField.isSelected(mousePosF) && !isIp)
 				isIp = true;
 			if (portTextField.isSelected(mousePosF) && isIp)
@@ -140,7 +142,7 @@ void Menu::Window::Loop()
 			Events();
 			Display();
 		} else {
-			Game game(window, "127.0.0.1", s.ioService(), "PlayerName"); //_ip
+			Game game(window, _ip, s.ioService(), "PlayerName"); //_ip
 			game.run();
 		}
 	}

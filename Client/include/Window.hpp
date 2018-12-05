@@ -12,6 +12,7 @@
     #include <utility>
     #include <SFML/Graphics.hpp>
     #include <SFML/Network.hpp>
+    #include <SFML/Audio.hpp>
     #include "Image.hpp"
     #include "Button.hpp"
     #include "TextField.hpp"
@@ -63,6 +64,7 @@ namespace Menu {
                 TextField portTextField;
                 std::string _ip;
                 sf::Font font;
+                sf::Music _music;
     };
 
 }
