@@ -16,6 +16,7 @@
     #include "Image.hpp"
     #include "Button.hpp"
     #include "TextField.hpp"
+    #include "Music.hpp"
     #include "Constants/constants.hpp"
 
     //to adjust
@@ -63,9 +64,8 @@ namespace Menu {
                 TextField ipTextField;
                 TextField portTextField;
                 std::string _ip;
-                sf::Music _music;
+                Music _music;
                 sf::Font font;
-                // sf:: _buffer;
     };
 
 }

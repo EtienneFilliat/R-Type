@@ -23,7 +23,8 @@ Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
 	isIp(false),
 	ipTextField(IP_IMG_PATH),
 	portTextField(PORT_IMG_PATH),
-	_ip("")
+	_ip(""),
+	_music("Client/res/interstellar.ogg")
 {
 	if (!font.loadFromFile(FONT_PATH))
 		std::cout << "Failed to load font" << std::endl;
@@ -35,10 +36,8 @@ Menu::Window::Window(sf::VideoMode mode, const sf::String &title)
 		portTextField.setPos(800, 670);
 		portTextField.setMaxCharacters(5);
 	}
-	if (_music.openFromFile("Client/res/interstellar.ogg")) {
-		_music.setLoop(true);
-		_music.play();
-	}
+	_music.isRepeatable(true);
+	_music.play();
 	background.get_sprite().scale(sf::Vector2f(static_cast<float>(mode.width) / static_cast<float>(MENU_BG_WIDTH), static_cast<float>(mode.height) / static_cast<float>(MENU_BG_HEIGHT)));
 }
 
