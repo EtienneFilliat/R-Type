@@ -47,11 +47,10 @@ void Ecs::FrameSendingSystem::run()
 
 void Ecs::FrameSendingSystem::drawThisEntity(std::shared_ptr<Entity> entity)
 {
-	std::unique_ptr<boost::asio::ip::udp::endpoint> endpoint;
 	std::shared_ptr<Drawable> drawComp = entity.get()->getComp<Drawable>();
 	std::shared_ptr<Position> posComp = entity.get()->getComp<Position>();
 	for (auto &player : _players) {
-		endpoint = std::make_unique<boost::asio::ip::udp::endpoint>(player.socket.remote_endpoint().address().to_string(), 1919);
+		boost::asio::ip::udp::endpoint endpoint(player.socket.remote_endpoint().address(), 1919);
 		_server.send({drawComp.get()->getSpriteSheetIndex(),
 			drawComp.get()->getSpriteOffset().first,
 			drawComp.get()->getSpriteOffset().second,
@@ -59,6 +58,6 @@ void Ecs::FrameSendingSystem::drawThisEntity(std::shared_ptr<Entity> entity)
 			drawComp.get()->getSpriteSize().second,
 			posComp.get()->getPosition().first,
 			posComp.get()->getPosition().second
-		}, *(endpoint.get()));
+		}, endpoint);
 	}
 }
