@@ -18,6 +18,7 @@ class Music {
 		inline void replay() { _music.stop(); _music.play(); };
 		inline void stop() { _music.stop(); };
         inline void isRepeatable(bool repeat) { _music.setLoop(repeat); };
+		inline void setVolume(float volume) { _music.setVolume(volume); };
 
 	private:
         sf::Music _music;

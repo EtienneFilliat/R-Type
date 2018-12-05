@@ -24,6 +24,7 @@ Game::Game(sf::RenderWindow &window, const std::string &ip, boost::asio::io_serv
 	_client(new UDPClient(iso, STD_CLI_UPD_PORT, _QClass)),
 	_shoot("Client/res/pew-pew.ogg")
 {
+	_shoot.setVolume(10);
 	_paralax.addbck("Client/res/parallax-space-backgound.png");
 	_paralax.addbck("Client/res/parallax-space-far-planets.png");
 	_paralax.addbck("Client/res/parallax-space-stars.png");
@@ -39,10 +40,15 @@ bool Game::GameEvents()
 	while (_window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			_window.close();
+			_shoot.stop();
 			return false;
 		}
 		if (event.type == sf::Event::KeyPressed)
 			CheckPlayerInput(event);
+		if (event.type == sf::Event::KeyReleased &&
+			event.key.code == sf::Keyboard::Space)
+			_actions.push({_playerName, Constants::EVENT::SHOOT, 0});
+			
 	}
 	return true;
 }
@@ -72,9 +78,6 @@ void Game::CheckPlayerInput(sf::Event &event)
 			break;
 		case sf::Keyboard::D :
 			_actions.push({_playerName, Constants::EVENT::MOVE, Constants::DIRECTION::RIGHT});
-			break;
-		case sf::Keyboard::Space :
-			_actions.push({_playerName, Constants::EVENT::SHOOT, 0});
 			break;
 		default :
 			break;

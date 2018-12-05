@@ -119,8 +119,8 @@ std::string Menu::Window::FormatTCPData(Constants::TcpActions action, std::strin
 {
 	std::string packet;
 	packet += static_cast<char>(action);
-	packet += static_cast<char>(payload.size());
 	packet += payload;
+	packet += static_cast<char>(payload.size());
 	return packet;
 }
 
@@ -137,7 +137,6 @@ void Menu::Window::Display()
 
 void Menu::Window::Loop()
 {
-	//boost::asio::io_service ios;
 	IoServiceWork s;
 
 	while (window.isOpen()) {
@@ -149,4 +148,5 @@ void Menu::Window::Loop()
 			game.run();
 		}
 	}
+	_music.stop();
 }
