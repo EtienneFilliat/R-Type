@@ -4,6 +4,8 @@ This project aims to recreate the [R-Type](https://fr.wikipedia.org/wiki/R-Type)
 
 Final Grade : **A**
 
+Made by : Etienne FILLIAT - Maël DRAPIER - Marius SOLER - Thomas PEN
+
 ## Server
 
 - [X] The server must be multi-threaded
